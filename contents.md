@@ -1,4 +1,7 @@
 // contents-1.14
+[실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+
 인터프리터 vs 컴파일: type 관점
 source.file -> compile -> byte code -> runtime -> exec
 
