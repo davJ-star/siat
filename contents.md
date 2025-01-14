@@ -18,8 +18,15 @@ source.file -> compile -> byte code -> runtime -> exec
 
 ### concatenate 에러(str)
 
-<img src="https://github.com/user-attachments/assets/0f14454b-f3bf-45ea-b0cd-75c11bfc4d59" width="400" height="200" alt="이미지 설명">
+<img src="https://github.com/user-attachments/assets/0f14454b-f3bf-45ea-b0cd-75c11bfc4d59" width="300" height="300" alt="이미지 설명">
 
+### dictionary : mapping이니깐 인덱싱과 슬라이싱이 리스트와 동일한 방식으론 불가능하다.
+key는 항상 string으로 불러서 쓴다.
+
+
+<img src="https://github.com/user-attachments/assets/38514bcf-8577-4f87-a526-5c1a0def5f93" width="300" height="200" alt="이미지 설명">
+
+### tuple : sequence이니깐 인덱싱과 슬라이싱이 리스트와 동일한 방식으로 가능하다. -> 무조건 []로 숫자값을 토대로 사용은 확실히 가능
 
 
 
