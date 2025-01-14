@@ -8,6 +8,13 @@ source.file -> compile -> byte code -> runtime -> exec
 함수 vs 메소드: 단독으로 실행 가능 여부
 
 
+## 에러항목
+
+### concatenate 에러(str)
+
+<img src="https://github.com/user-attachments/assets/0f14454b-f3bf-45ea-b0cd-75c11bfc4d59" width="400" height="200" alt="이미지 설명">
+
+
 
 
 // contents-1.15
