@@ -10,6 +10,14 @@ note
 - [정성욱_hw3Subway](https://colab.research.google.com/drive/1S8UT8JdDiUMnV5Z5wkmINrYOCphhRXjA?usp=drive_open#scrollTo=t6D4sD8Vis-Q)
 - [정성욱_hw4Stock](https://colab.research.google.com/drive/1tnpd3NoxapqG97U1Z6hSVE3P6CaCTbCD?usp=drive_open)
 
+### ML
+- [고객 대출 등급](https://colab.research.google.com/drive/1afTQMsyK8wu1kf7wwSIXVXlEIt1dLkyW?usp=drive_open)
+- [](https://colab.research.google.com/drive/1ZUjQ-S0CJjzxzedO8_YaJev7zxomXP_U?usp=drive_open)
+
+### DeepLearning
+- [](https://colab.research.google.com/drive/1afTQMsyK8wu1kf7wwSIXVXlEIt1dLkyW?usp=drive_open)
+- [](https://colab.research.google.com/drive/1ZUjQ-S0CJjzxzedO8_YaJev7zxomXP_U?usp=drive_open)
+
 
 ### contents
 [임시 내용 작성(폴더로 옮겨야함)](https://github.com/davJ-star/siat/blob/main/contents.md)
