@@ -11,12 +11,12 @@ note
 - [정성욱_hw4Stock](https://colab.research.google.com/drive/1tnpd3NoxapqG97U1Z6hSVE3P6CaCTbCD?usp=drive_open)
 
 ### ML
-- [고객 대출 등급](https://colab.research.google.com/drive/1afTQMsyK8wu1kf7wwSIXVXlEIt1dLkyW?usp=drive_open)
-- [](https://colab.research.google.com/drive/1ZUjQ-S0CJjzxzedO8_YaJev7zxomXP_U?usp=drive_open)
+- [고객 대출등급 분류 해커톤](https://colab.research.google.com/drive/1ul1YJULG1FLgFXMAoTIrEKsu3gxOWRzr?usp=drive_open)
+- [ML_boston_house](https://colab.research.google.com/drive/1YX1qHiad3J1Dm-wM1gO5NyEOtteUkIfV?usp=drive_open)
 
 ### DeepLearning
-- [](https://colab.research.google.com/drive/1afTQMsyK8wu1kf7wwSIXVXlEIt1dLkyW?usp=drive_open)
-- [](https://colab.research.google.com/drive/1ZUjQ-S0CJjzxzedO8_YaJev7zxomXP_U?usp=drive_open)
+- []()
+- []()
 
 
 ### contents
