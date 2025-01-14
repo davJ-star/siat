@@ -4,6 +4,8 @@ note
 ## python
 포트폴리오: ai, 데이터분석, 장고(그외 서버 개발)
 ### contents
+[임시 내용 작성(폴더로 옮겨야함)](https://github.com/davJ-star/siat/blob/main/contents.md)
+
 
 ### project(previous) - 폴더 생성하고 -> 해당 배운 내용 작성
 
