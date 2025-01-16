@@ -165,7 +165,46 @@ feat. startwith()도 있다.
 [튜플 자료구조 참고](https://github.com/davJ-star/siat/edit/main/contents.md#%ED%8A%9C%ED%94%8C)
 
 ```paintext
- 체크~!
+  [요약]
+   
+    
+```
+
+
+```paintext
+  [tip]
+    1. 생성할 때 우선 규칙적 생성은 iterator를 이용해서 만든다고 생각하자. (튜플도 예외없이 생성하는 건 가능!)
+    2. 여러 변수를 넣고 싶을 때 format에 넣어서 관리 가능한 이점과 가독성 챙길 수 있음.(물론 이걸 지원하지 않고 f``이나 {}로 하나하나 넣는 것 밖에 안되면 어쩔 수 없긴함) --> print('당신의 이름은 {}입니다.'.format(a))
+    3.
+    4.
+    5.
+    6.
+    7. 
+
+```
+
+tuple: 튜플
+- 읽기 전용
+- 순서, 중복 허용
+- ...
+
+- 시퀀스이기 때문에 인덱싱과 슬라싱이 가능 []
+- 필요에 따라 데이터를 조작해야할 경우
+- packing & unpacking
+
+
+[딕셔너리 자료구조 참고](https://github.com/davJ-star/siat/edit/main/contents.md#%EB%94%95%EC%85%94%EB%84%88%EB%A6%AC)
+```paintext
+  [요약]
+   
+    
+```
+
+
+```paintext
+  [tip]
+    1. 
+
 ```
 
 
