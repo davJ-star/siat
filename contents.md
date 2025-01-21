@@ -390,6 +390,18 @@ if grade == 'A' and avg >= 95:
 else:
   print("장학금 지급 대상이 아닙니다.")
 
+
+# contents-1.20 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=FLyKLQtcCOwN)
+(저장을 안해서... 앞으로 커밋 잘하자..)
+
+# contents-1.21 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=rauHcBK8MqEC)
+
+
+
+
+
+
+
 ```
 ### 삼항 연산자.
 데이터가 분석할 때, 중첩해서 많이 사용한다.
