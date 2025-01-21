@@ -1,3 +1,14 @@
+# 전반 tip
+1. 프로그래밍은 항상 가변적인 데이터를 생각해야한다.
+2. 
+
+
+
+# 전반 요약
+
+
+
+
 # contents-1.14 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
 
 
@@ -390,19 +401,32 @@ if grade == 'A' and avg >= 95:
 else:
   print("장학금 지급 대상이 아닙니다.")
 
+```
+### 삼항 연산자.
+데이터가 분석할 때, 중첩해서 많이 사용한다.
+
 
 # contents-1.20 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=FLyKLQtcCOwN)
 (저장을 안해서... 앞으로 커밋 잘하자..)
 
 # contents-1.21 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=rauHcBK8MqEC)
 
-
-
-
-
-
+## 이중 루프 구문
+*tip*
+1. 행과 열 둘다 증가해야되니 두개를 컨트롤해야한다. 이때 사용 => 2차원 리스트(대략 배열)로 만들 수 있는 것
+```paintext
 
 ```
-### 삼항 연산자.
-데이터가 분석할 때, 중첩해서 많이 사용한다.
+
+### 이중 루프에서 break과 continue
+```paintext
+
+```
+
+
+
+
+
+
+
 
