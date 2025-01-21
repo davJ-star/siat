@@ -1,6 +1,6 @@
 # 전반 tip
 1. 프로그래밍은 항상 가변적인 데이터를 생각해야한다.
-2. 
+2. [최신 문법이더라도 사내 명세서에서 따라가기]()
 
 
 
@@ -8,8 +8,8 @@
 
 # 코드 tip
 ### [반복문for에서 인덱스와 이터레이터 어떻게 잘 활용할 수 있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
-### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
-### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [ㅇ](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [while과 for문 차이]()
 ### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
 ### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
 ### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
@@ -29,7 +29,7 @@ source.file -> compile -> byte code -> runtime -> exec
 
 함수(ㅇ) vs 메소드(x): **단독**으로 실행 가능 여부
 
-*tip* 
+### *tip* 
 - :int와 같이 최근 문법을 추천하지 않는다. 하지만, 익혀두는건 필요하다...(명세서 지침을 바꿀수 있는 위치가 된다면 가능)
 - **type을 체크하고 쓸 수 있어야 확실하게 접근할 수 있다.**
 
@@ -190,9 +190,10 @@ feat. startwith()도 있다.
     
 ```
 
+ ### **tip**
 
 ```paintext
-  [tip]
+
     1. 생성할 때 우선 규칙적 생성은 iterator를 이용해서 만든다고 생각하자. (튜플도 예외없이 생성하는 건 가능!)
     2. 여러 변수를 넣고 싶을 때 format에 넣어서 관리 가능한 이점과 가독성 챙길 수 있음.(물론 이걸 지원하지 않고 f``이나 {}로 하나하나 넣는 것 밖에 안되면 어쩔 수 없긴함) --> print('당신의 이름은 {}입니다.'.format(a))
     3.
@@ -223,13 +224,8 @@ tuple: 튜플
     그렇기 때문에 인덱싱 대신 get()을 작성하면 인덱싱에 해당하는 key값이 없을때 keyerror를 뱉지 않고, None 반환
 ```
 
-
-```paintext
-  [tip]
+### tip
     1. 데이터를 묶을 때, zip함수를 상당히 많이 쓰인다.
-    2.
-
-```
 
 ```paintext
 추가 체크
@@ -331,12 +327,10 @@ Python의 딕셔너리 탐색은 해시 테이블을 기반으로 하며, 평균
 ```
 
 
-```paintext
-  [tip]
+### tip
     1. 
     2.
 
-```
 
 [세트 자료구조]("")
 ```paintext
@@ -345,12 +339,10 @@ Python의 딕셔너리 탐색은 해시 테이블을 기반으로 하며, 평균
 ```
 
 
-```paintext
-  [tip]
+### tip
     1. 
     2.
 
-```
 
 # contents-1.17 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=na4SGZlAeJco)
 
@@ -359,14 +351,13 @@ Python의 딕셔너리 탐색은 해시 테이블을 기반으로 하며, 평균
     
 ```
 
-```paintext
-  [tip]
+### tip
     1. 타입에 대해 항상 고민해야된다. -> 그렇기 때문에 특히 백엔드에서는 ERD를 쓰면서 데이터 타입을 작성하는 것이다.
     2. **규칙이 없어져서 직접 담아야함(규칙없을때는 일단 리스트에 다 넣는걸 이상하게 생각 x)**
     3. 2월만 변경된다. 그냥 해당 조건일때만, +1하면될 것이다. 이런 생각을 할 수 있어야함.(**규칙과 차이가 거의 없을때 하나만 쓰고 다른 부분만 변경하는게 효율적**)
     4.  A를 안써도 되는이유가 중첩이 되면 and 대신 중첩으로 풀어쓴거기 때문에 이둘을 나눠서 처리해야되는 경우에만.. 일단 전반적 로직 파악하기!
     5. 삼항연산자가 단일 조건일때 성능이 더 좋다. 적극 사용하기를 추천한다.
-```
+
 ## standard in out
 
 ### standard in: input()
