@@ -6,10 +6,16 @@
 
 # 전반 요약
 
-# 코트 tip
-### []()
-**접근하고 수정하는 것!**: *idx를 잘 관리할 수 있도록 해야함.*
-**접근하는 것!**: *for in을 잘 활용해야함.*
+# 코드 tip
+### [반복문for에서 인덱스와 이터레이터 어떻게 잘 활용할 수 있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
 
 
 # contents-1.14 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
@@ -415,7 +421,7 @@ else:
 # contents-1.21 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=rauHcBK8MqEC)
 
 ## 이중 루프 구문
-*tip*
+### *tip*
 1. 행과 열 둘다 증가해야되니 두개를 컨트롤해야한다. 이때 사용 => 2차원 리스트(대략 배열)로 만들 수 있는 것
 ```paintext
 
