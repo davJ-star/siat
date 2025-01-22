@@ -469,3 +469,8 @@ while len(tmpList) != idx: # 조건문은 true여야함. len(tmpList) > cnt 도 
 ```
 
 
+# contents-1.22 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=uy9GxtMJuQ6Q)
+## 함수
+행위를 정의하는 영역
+
+
