@@ -473,4 +473,33 @@ while len(tmpList) != idx: # 조건문은 true여야함. len(tmpList) > cnt 도 
 ## 함수
 행위를 정의하는 영역
 
+### *tip*
+1. 타입(str등) 강제성이 없다. 힌트만 제공
+```python
+
+def greetingMsg(message:str):
+  print(message)
+
+greetingMsg(msg)
+```
+## lambda
+```python
+
+```
+
+## map()
+```python
+
+```
+
+## filter()
+```python
+
+```
+
+## reduce()
+```python
+
+```
+
 
