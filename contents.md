@@ -502,4 +502,59 @@ greetingMsg(msg)
 
 ```
 
+# contents-1.23 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=_8niTh1QebYJ)
+
+## class: 웹애플리케이션을 제작하려면 파이썬에서도 알아야한다.
+
+
+## 예외처리
+모든 예외를 알고 처리할 수 없다.
+예외 처리하는 방법을 알자!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
