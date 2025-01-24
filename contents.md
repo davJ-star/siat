@@ -513,10 +513,16 @@ greetingMsg(msg)
 
 
 
+# contents-1.24 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=SDPUhxhzoMHT)
 
 
+## class:  객체지향(oop)
+object
+명사적 의미: 변수
+동사적 의미: 메소드
 
-
+class는 단순히 템플릿이며, 변수랑 메소드를 보유하고 있지 않다.(인스턴스의 소유.)
+클래스를 만들때 그냥 문서 작성 가이드를 만든다는 관점으로 접근
 
 
 
