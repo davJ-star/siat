@@ -58,10 +58,15 @@
 꼭 보일 내용에서 해당 최소 요소의 길이랑 폰트 사이즈를 어떻게 맞추는게 맞을껀지 고려했어야했음.
 우선 경진대회에서 놓친부분은 모든 내용을 다 보여줄려면 z fold 5 기준으로 설계를 했어야 한다. 
 
+### mediaQuery를 이용해서 px 설정하고, rem으로 해주면 자동으로 줄어든다.
+### 
+
+
 
 ## 생각해본 부분
 ### 해당 경우에는 width 지정시 overflow를 생각해야한다. (하지만, 기본적으로는 height랑 width는 contents 기준으로 auto된다.)
 ### block 요소 내 img 태그 쓰는 경우 특별한 경우다. 
+
 ```
 width 지정하면, contents내 요소가 더 큰 경우를 생각해야한다.
 => overflow되도록 설정해놨다.
@@ -74,6 +79,19 @@ width 지정하면, contents내 요소가 더 큰 경우를 생각해야한다.
 ## JAVASCRIPT
 
 ### 프론트엔드에서 비동기 처리를 부분만 랜더링된다고 설명하심(SPA, 랜더링을 말하시면서 )
+
+## documents vs broswer 제어
+### broswer => windows
+### documents => html 태그라고 생각하기
+
+
+## 웹 문서 안에  vs 외부 스크립트 파일로
+## BOM(브라우저 객체 모델)
+### DOM(문서 객체 모델)
+### 그외(navigator, history, location, screen)
+
+
+
 
 
 # 내가 검색해 본 것(유용한 html 태그: css 코드 줄이기 위함.)
