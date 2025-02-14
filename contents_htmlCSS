@@ -74,22 +74,6 @@ width 지정하면, contents내 요소가 더 큰 경우를 생각해야한다.
 
 
 
-```
-# [contents-2.13 실습 내용]("")
-## JAVASCRIPT
-
-### 프론트엔드에서 비동기 처리를 부분만 랜더링된다고 설명하심(SPA, 랜더링을 말하시면서 )
-
-## documents vs broswer 제어
-### broswer => windows
-### documents => html 태그라고 생각하기
-
-
-## 웹 문서 안에  vs 외부 스크립트 파일로
-## BOM(브라우저 객체 모델)
-### DOM(문서 객체 모델)
-### 그외(navigator, history, location, screen)
-
 
 
 
