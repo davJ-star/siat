@@ -18,3 +18,16 @@
 ### 그외(navigator, history, location, screen)
 
 # [contents-2.14 실습 내용]("")
+## 변수
+
+
+## 조건문(if, switch)
+조건 2개 초과: switch 고려하되 , 값 기준으로 분기를 설정할 수 있다면! 만약에 어렵다면, if문
+조건 2개 이하: if문 고려
+
+## 반복문(for, forEach)
+
+## 함수
+## ``이용
+
+
