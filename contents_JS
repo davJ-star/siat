@@ -3,7 +3,7 @@
 
 
 # [contents-2.13 실습 내용]("")
-## JAVASCRIPT
+
 
 ### 프론트엔드에서 비동기 처리를 부분만 랜더링된다고 설명하심(SPA, 랜더링을 말하시면서 )
 
@@ -17,3 +17,4 @@
 ### DOM(문서 객체 모델)
 ### 그외(navigator, history, location, screen)
 
+# [contents-2.14 실습 내용]("")
