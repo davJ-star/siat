@@ -1,6 +1,7 @@
 # 전반 tip
 1. 프로그래밍은 항상 가변적인 데이터를 생각해야한다.
 2. [최신 문법이더라도 사내 명세서에서 따라가기]()
+3. 
 
 
 
@@ -30,27 +31,27 @@ source.file -> compile -> byte code -> runtime -> exec
 - :int와 같이 최근 문법을 추천하지 않는다. 하지만, 익혀두는건 필요하다...(명세서 지침을 바꿀수 있는 위치가 된다면 가능)
 - **type을 체크하고 쓸 수 있어야 확실하게 접근할 수 있다.**
 
+## 진행사항
+1. JDK 설치
+2. main 메소드 만들기
+3. 
+
+### main 메소드
+실행가능한 클래스만 main 메소드를 가진다.
+instance 가능하다(?)
+컴파일 가능(?)
+
+### 대문자로 시작되는건 class다.
+
+### 저장하면 자동으로 컴파일된다. 
+.class 파일이 만들어진다.
+#### 타입 체크는 컴파일 시점에 이뤄진다.
+
+
 ## 에러항목
 
-### concatenate 에러(str)
+### 에러
 
-<img src="https://github.com/user-attachments/assets/0f14454b-f3bf-45ea-b0cd-75c11bfc4d59" width="300" height="300" alt="이미지 설명">
-
-### dictionary : mapping이니깐 인덱싱과 슬라이싱이 리스트와 동일한 방식으론 불가능하다.
-key는 항상 string으로 불러서 쓴다.
-
-
-<img src="https://github.com/user-attachments/assets/38514bcf-8577-4f87-a526-5c1a0def5f93" width="300" height="200" alt="이미지 설명">
-
-### tuple : sequence(순서)이니깐 인덱싱과 슬라이싱이 리스트와 동일한 방식으로 가능하다. -> 무조건 []로 숫자값을 토대로 사용은 확실히 가능
-
-
-### string : sequence(순서)이니깐 인덱싱과 슬라이싱이 리스트와 동일한 방식으로 가능하다. -> 무조건 []로 숫자값을 토대로 사용은 확실히 가능
-
-
-
-### list : sequence이니깐 인덱싱과 슬라이싱이 리스트와 동일한 방식으로 가능하다. -> 무조건 []로 숫자값을 토대로 사용은 확실히 가능
-[start: end: step]
 
 
 
