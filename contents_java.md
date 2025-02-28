@@ -87,6 +87,62 @@ requsetMapping / getMapping또는 postMapping등 설정가능하다.
 
 
 
+## lombook
+```java
+package siat.study;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor // 기본 생성자를 만들어준다.
+@AllArgsConstructor // 5개에 대한 생성자를 만들어준다.
+@Builder // PostDTO.builder().title("제목").regDate("2021-07-01").writer("광현").content("내용").viewCnt("0").build();방식으로 생성할 수 있다. 다만, AllArgsConstructor가 있어야 가능하다.
+public class PostDTO {
+    
+    private String title;
+    private String regDate;
+    private String writer;
+    private String content;
+    private String viewCnt;
+    
+}
+
+
+```
+
+### builder로 생성
+```java
+// 
+import siat.study.PostDTO; // 패키지 import 안하면 에러 발생
+
+public class PostMain {
+    public static void main(String[] args) {
+        PostDTO post = PostDTO.builder()
+                            .title("제목")
+                            .regDate("2021-07-01")
+                            .writer("광현")
+                            .content("내용")
+                            .viewCnt("0")
+                            
+                            .build();
+
+        System.out.printf("제목 : %s \n등록일 : %s \n작성자 : %s \n내용 : %s \n조회수 : %s\n", post.getTitle(), post.getRegDate(), post.getWriter(), post.getContent(), post.getViewCnt());
+
+    }
+}
+
+```
+
+
+
+
+
+
 ## 에러항목
 
 ### 에러
