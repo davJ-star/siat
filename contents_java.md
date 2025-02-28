@@ -12,7 +12,7 @@
 ### [ㅇ](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
 ### [while과 for문 차이]()
 ### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
-### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
+
 
 
 
@@ -51,6 +51,27 @@ instance 가능하다(?)
 객체 생성
 
 ## like는 메소드~
+
+
+# contents-2.28 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+
+### *tip* 
+- :int와 같이 최근 문법을 추천하지 않는다. 하지만, 익혀두는건 필요하다...(명세서 지침을 바꿀수 있는 위치가 된다면 가능)
+- **type을 체크하고 쓸 수 있어야 확실하게 접근할 수 있다.**
+
+## 진행사항
+1. JDK 설치
+2. 
+
+### postDTO
+DTO
+#### VO
+
+#### ENTITY
+
+### DAO
+
 
 
 ## 에러항목
