@@ -3,17 +3,11 @@
 2. [최신 문법이더라도 사내 명세서에서 따라가기]()
 3. 
 
-
-
 # 전반 요약
 
 # 코드 tip
 ### [반복문for에서 인덱스와 이터레이터 어떻게 잘 활용할 수 있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
-### [ㅇ](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
 ### [while과 for문 차이]()
-### [있나?](https://github.com/davJ-star/siat/edit/main/contents.md#tip)
-
-
 
 
 # contents-2.27 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
@@ -75,7 +69,13 @@ instance 가능하다(?)
 // 프론트엔드에서 받은 데이터를 저장하는 DTO (data transfer object)
 // DTO는 데이터베이스와 프론트엔드의 데이터를 매핑하는 역할을 한다.
 
+```
+requestBody / responseBody로 체크를 해보면된다.
 
+requsetMapping / getMapping또는 postMapping등 설정가능하다.
+
+해당 url을 토대로 데이터를 받아야된다. requsetBody에 존재한다. 그리고 DTO나 일단 Response값을 줘야하는 경우 또는 응답 상태를 나타내야하는경우 ResponseEntity를 사용할 수 있다.
+```
 
 #### VO
 // VO : Value Object로 데이터베이스에서 가져온 데이터를 담아 프론트로 전달할 객체
