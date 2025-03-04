@@ -148,6 +148,11 @@ public class PostMain {
 1. 
 2. 
 
+### 기본 인식 타입
+#### 실수: double (8byte)
+만약 float으로 사용할려면 casting하거나 F를 붙이면 된다.
+#### 정수: int
+더하기 하면 
 ### 제어문
 
 #### if
@@ -191,7 +196,24 @@ public class ControlApp {
 
 ```
 
+### 반복문
 
+#### for
+for(초기식; 조건식; 증감식){
+
+}
+
+#### while
+while(조건식){
+    증감식
+}
+
+#### do ~ while
+do {
+    증감식
+}(조건식){
+    
+}
 
 
 
