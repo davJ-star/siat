@@ -145,8 +145,8 @@ public class PostMain {
 - 
 
 ## 진행사항
-1. 
-2. 
+1. 제어구문, 반복문
+2. builder 패턴 이용한 인스턴스 생성
 
 ### 기본 인식 타입
 #### 실수: double (8byte)
@@ -246,6 +246,12 @@ do {
 }
 
 
+#### break
+다만 주의해야될 부분은 중첩 for 루프를 가질땐, 가장 안의 for 만 벗어난다.(중첩 if라도...)
+
+
+#### builder
+builder로 생성하면 생성자가 private로 바뀐다.
 
 ## 에러항목
 
