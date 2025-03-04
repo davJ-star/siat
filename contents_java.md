@@ -138,6 +138,58 @@ public class PostMain {
 
 ```
 
+# contents-3.4 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+
+### *tip* 
+- 
+
+## 진행사항
+1. 
+2. 
+
+### 제어문
+
+#### if
+
+#### switch
+default
+```java
+package siat.study.control;
+
+public class ControlApp {
+    /**
+     * 
+     */
+    public String woodMan(int number) {
+        String msg = null;
+        // 제거할 수 있다. switch문에서 default여도 상관없다면 굳이..?
+        if (!(number >= 1 && number <= 3)) {
+            return "1~3 사이의 값이 아닙니다.";
+            
+        }
+        System.out.println("산신령이 나타났습니다. ^*^");
+        switch (number) {
+            case 1:
+                msg = "거짓말을 하는구나";
+                break;
+            case 2:
+                msg = "또 거짓말을 하는구나";
+                break;        
+            case 3:
+                msg = "정직하구나 너에게 모든 도끼를 주겠다.";
+                break;
+            
+            default:
+                msg = "죽을래~";
+                break;
+        }
+
+        return msg;
+    }
+}
+
+```
 
 
 
