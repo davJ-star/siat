@@ -158,7 +158,7 @@ public class PostMain {
 #### if
 
 #### switch
-default
+
 ```java
 package siat.study.control;
 
@@ -195,6 +195,36 @@ public class ControlApp {
 }
 
 ```
+
+#### 상세하게 출력하기 위한 강사님 코드
+**중첩 if문을 &&로 단일 if로 만들수 있다.**
+**if 단독으로 사용하는 경우 흐름 제어 및 각각 상세 body로 컨트롤 하기 위해서 사용할 수 있다.**
+=> 점수 분기 외에 왜 fail 되는지 상세 설명할때도 가능... _뭉친걸: 같이 고려해야할 조건들~!을 쪼개서 각각 조건에 대해 컨드롤(body)해야되는 경우_
+
+```java
+double avg1 = (kor+eng+math)/3;
+        if (kor >= 40 && eng >= 40 && math >= 40 && avg1 >= 60) {
+            msg = "합격";
+        }else {
+            if (avg1 < 60) {
+                msg = "평균 점수 미달로 불합격";
+            }
+            if (kor < 39) {
+                msg = "국어 점수 미달로 불합격";
+            }
+            if (eng < 39) {
+                msg = "영어 점수 미달로 불합격";
+            }
+            if (math < 39) {
+                msg = "수학 점수 미달로 불합격";
+            }
+            
+        }
+
+        return msg;
+```
+
+
 
 ### 반복문
 
