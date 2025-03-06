@@ -282,12 +282,34 @@ builder로 생성하면 생성자가 private로 바뀐다.
 - 
 
 ## 진행사항
-1. 
+1. JPA는 Entity로 보고, request 파라미터 데이터는 DTO로 본다. response에 대한 데이터는 VO(response DTO)다.
+2. service는 비지니스로직을처리한다. DAO(Data Access Object)를 통해서 DB(DBMS)에 접근한다. => JPA나 JDBC는 어떻게?
+3. DB에서 주는건 VO(Value Object)다. = response DTO
 
 ### 
 
-```java
+```paintext
+제대로 내가 원하는대로 출력이 안된 이유는 regiser()를 등록하지 않고 1번을 눌렀기 때문이다.
 
+register하려면, (CREATE에 해당)
+DAO에서 requsetDTO로부터 파라미터를 받아야한다.
+
+DAO에서 DTO []에 저장한다.(지금 DB가 없으니,) -> responseDTO로 생각했는데 아닌가봄. requsetDTO에 저장한다.
+
+selectRow()를 통해서 전체 반환해준다.
+--------------------------
+View에 보여주기 위해서 DAO를 활용해서 데이터를 출력한다.
+service를 통해서 보여줄수 있으니 service는 일단 dao를 호출한다.
+view에서 dao를 호출해서 데이터를 뿌리면된다.
+
+
+
+근데 굳이 PostMain.java로 작업해서 view를 때왔다고 생각하면된다.
+그렇기때문에 view.menu()에 필요한 작업을 위에 view 생성시 넣으면된다.
+view 생성하고 dao를 builder로 생성한다.
+	WHY? => view에서 dao를 호출해서 데이터를 뿌리면된다.
+DAO에는
+	WHY? => DAO에서 requsetDTO로부터 파라미터를 받아야한다.
 
 ```
 
