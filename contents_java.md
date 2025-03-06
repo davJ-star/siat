@@ -253,6 +253,46 @@ do {
 #### builder
 builder로 생성하면 생성자가 private로 바뀐다.
 
+
+
+# contents-3.5 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+
+### *tip* 
+- 
+
+## 진행사항
+1. 
+
+### 
+
+```java
+
+
+```
+
+
+
+
+
+# contents-3.6 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+
+### *tip* 
+- 
+
+## 진행사항
+1. 
+
+### 
+
+```java
+
+
+```
+
+
+
 ## 에러항목
 
 ### 에러
