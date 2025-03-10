@@ -359,6 +359,25 @@ SOLID 원칙을 적용하면 코드의 재사용성이 높아지고, 유지보�
 오버라이딩: 상속관계에서 구현부가 달라저야한다.
 ```
 
+```paintext
+상수: static final
+
+
+참조 타입: enum, class, 배열
+
+enum으로 코드상으로 묵시적으로 정의
+상수값은 컴파일시점에서 체크할 수 있다. 그래서 안전하게 관리할 수 있다.
+
+
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "siat.study.oop.domain.constructor.PersonVO.personInfo()" because "ary[i]" is null
+        at PolymorphismMain.main(PolymorphismMain.java:17)
+
+=> 이를 위해서 if ( != null) 체크한다.
+
+system 검색하면 out에서 필드는 static으로 선언되어 있다.
+```
+
+
 
 
 ## 에러항목
