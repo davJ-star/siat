@@ -377,7 +377,15 @@ Exception in thread "main" java.lang.NullPointerException: Cannot invoke "siat.s
 system 검색하면 out에서 필드는 static으로 선언되어 있다.
 ```
 
+```paintext
+for (PersonVO personVO : perAry) {
+            if (person == personVO.getName()) {
+                return personVO;
+            }
+        }
 
+여기서person == personVO.getName() 쓰면 안된다. .equal()을 써야한다.
+```
 
 
 ## 에러항목
