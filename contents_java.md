@@ -454,6 +454,78 @@ static 메소드는 변수에 접근할 수 없다. static이어야만 가능!
 
 ```
 
+```paintext
+
+	package siat.study.oop.factory;
+	
+	import siat.study.oop.abstraction.LgTV;
+	import siat.study.oop.abstraction.SamsungTV;
+	import siat.study.oop.abstraction.TV;
+	
+	public class TVFactory {
+	    private static TVFactory instance;
+	    private TV [] ary;
+	    private TVFactory(){
+	        // 초기화
+	
+	
+	        // 여기서 부터 옵션이다.
+	        ary = new TV[2];
+	        ary[0] = new SamsungTV();
+	        ary[1] = new LgTV();
+	    }
+	
+	    public static TVFactory getInstance(){
+	        if (instance == null) {
+	            // TVFactory에 대한 것을 만들어야하는데 instance로 이미 공유하기로한것만 쓴다.
+	            // 클래스내에서 공유하되, 외부에서 접근햇을때 내부에서 생성한다. 
+	            // 내부니 클래스에내에서 공유중이며, 한번만 생성하도록한다.
+	            instance = new TVFactory();
+	        }
+	
+	        return instance;
+	    }
+	    
+	    public TV getBrand(String brandName){
+	        TV tv = (brandName.equals("samsung")) ? ary[0] : ary[1];
+	        return tv;
+	    }
+	}
+		
+```
+
+
+
+```paintext
+
+	import siat.study.oop.abstraction.LgTV;
+	import siat.study.oop.abstraction.TV;
+	import siat.study.oop.factory.TVFactory;
+	
+	public class TVAppMain {
+	    public static void main(String[] args) {
+	        TV tv = new LgTV();
+	        // TV tv = new SamsungTV();
+	        // tv = new SamsungTV();으로 바로 볼수 있다.
+	        // 사용자는 굳이 삼성제품인지 알필요가 없다.      
+	        
+	        // 객체 생성하는 것도 숨기도록 한다.
+	
+	        TVFactory tvFactory = TVFactory.getInstance(); // 해당 내부에서 해당 클래스 생성시 생성자에서 TV에 대해 생성한다. 배열로 만든다..
+	        // 외부에서 인스턴스를 생성해서 쓸껄  내부에서 쓰게 만들었으니 전역변수로 만들고, static으로 만들어서 공유하도록해야한다.
+	        TV tv1 = tvFactory.getBrand("samsung");
+	        TV tv2 = tvFactory.getBrand("lg");
+	        System.out.println(tv1);
+	        System.out.println(tv2);
+	
+	        
+	        
+	    }
+	}
+
+```
+
+
 
 ## 에러항목
 
