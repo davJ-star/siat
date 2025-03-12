@@ -634,6 +634,50 @@ collection API는 객체를 받는다.
 일반적으로 HashSet을 많이 쓴다.
 중복된 값을 가지고 싶지 않으면 set을 작성한다.
 
+반복자체가 안된다. 순서가 없기때문에~
+
+
+#### 3. Map({key: value})
+Map interface는 Collection에 없다.
+https://docs.oracle.com/javase/8/docs/api/java/util/Map.html
+
+ex) 브라우저에서 카테고리가 다르다.
+담을때는 put을 쓴다.
+
+
+
+단일(한건)로 넘겨줘야는데 dto를 만들기 귀찮을때 map을 이용한다.
+xxxDTO
+xxxVO
+xxxEntity(jpa)
+
+
+
+#### 4. 예외처리
+파이썬: try - exception
+
+컴파일 -> 런타임(실행)이다보니 두개로 나눠진다.
+- 컴파일 예외처리(IOException, )
+- 런타임(실행) 예외처리(RuntimeException)
+
+예외는 폭탄이다.
+throws를 던져준다.
+
+	ex) throws IOException
+
+명시적 초기화해줘야한다.
+
+```java
+String data = null; // 이렇게 배놓지 않으면 try도 지역을 가지기 때문에 밖에서는 의미가 없다.
+        // 항상 try할 코드들 밖에서 변수 선언을 다하고 들어간다.
+        try {
+            data = br.readLine();
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+```
+
 
 
 
