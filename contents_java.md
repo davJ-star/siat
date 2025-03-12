@@ -536,6 +536,118 @@ static 메소드는 변수에 접근할 수 없다. static이어야만 가능!
 혹시라더라도 매개변수로 String으로 객체 생성한 값이 넘어왔는데 문자열 비교가 있는 경우에 문제가 생긴다.
 ```
 
+
+# contents-3.12 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+### *tip* 
+- *주소값을 받는 참조타입만 null을 쓴다*
+- =현업에서는 List lst = new Vector()나 List lst = new ArrayList()로 사용한다. (클래스 다형성을 활용하는 방법이다. 도한 메소드 다형성도 포함되긴함..)
+- 현업에서는 단일 타입으로 collection을 쓰는것을 원한다. <>를 사용한다.(generic)
+	-> 컴파일시점에서 안정성을 확보할 수 있다.
+	=> 예를 들어 <PersonVO>
+		- 불필요한 다운캐스팅 지양할 수 있다.(매개변수라고 생각하면된다.)
+ 
+### 수업 진행 사항
+1. 배열과 List 길이 체크
+2. ArrayList
+3. Set
+
+
+
+api로 호출할때는 new를 이용한 객체 생성만하면된다.
+
+collection API는 객체를 받는다.
+
+넣을때: add
+꺼낼때: get
+
+```paintext
+클래스 다형성 extends
+	-> 
+메소드 다형성 override
+	-> 
+매개변수 다형성
+	-> Object obj
+```
+
+
+
+
+#### 1. ArrayList
+	- add(Object obj) 에서 매개변수 다형성 Object obj
+	- 
+	- 
+```java
+        List perList = new ArrayList();
+        perList.add(new StudentVO("jslim", "seoul", "2018"));
+        perList.add(new StudentVO("jslim", "seoul", "2018"));
+        perList.add(new StudentVO("jslim", "seoul", "2018 "));
+
+        
+```
+
+```java
+	// 오버라이딩한 것만 접근 가능하다. 
+	for (int i = 0; i < perList.size(); i++) {
+            Object obj = perList.get(i);
+            System.out.println(obj.personInfo());
+        }
+	// casting해도 소용없다 어차피 오버라이딩이 안됨
+        for (int i = 0; i < perList.size(); i++) {
+            Object obj = (PersonVO)perList.get(i);
+            System.out.println(obj.personInfo());
+        }
+	// 오버라이딩 되었지만, 일단 런타임시에 위에 제네릭을 작성하지 않았다. 만약에 사용하지 않았다면 어떻게 됐는지 질문 필요
+	// 질문 답변: 
+        for (int i = 0; i < perList.size(); i++) {
+            // 왜 에러가나는지 알고 있니?: 런타임 안정성때문에?
+            PersonVO per = perList.get(i);
+            System.out.println(per.personInfo());
+        }
+```
+
+```java
+        List<PersonVO> perList1 = new ArrayList<PersonVO>();
+        perList1.add(new StudentVO("jslim", "seoul", "2018"));
+        perList1.add(new ManagerVO("jslim", "seoul", "2018"));
+        perList1.add(new TeacherVO("jslim", "seoul", "2018 "));
+	// for
+        for (int i = 0; i < perList1.size(); i++) {
+            PersonVO per1 = perList1.get(i);
+            System.out.println(per1.personInfo());
+        }
+	// foreach
+        for (PersonVO per2 : perList1) {
+            System.out.println(per2.personInfo());
+        }
+```
+	```java
+ 		System.out.println(">>>> Iterator");
+	        Iterator<PersonVO> ite = perList1.iterator();
+	        while (ite.hasNext()) {
+	            PersonVO per3 = ite.next();
+	            System.out.println(per3.personInfo());
+	        }
+ 	```
+ 
+#### 2. Set
+일반적으로 HashSet을 많이 쓴다.
+중복된 값을 가지고 싶지 않으면 set을 작성한다.
+
+
+
+
+
+
+#### 참고: wapeer class
+
+Wrapper class가 있다. 기본타입(8가지)를 객체화 시키는 클래스가 존재
+	int -> Integer, boolean -> Boolean
+
+1, true를 넣으면, Boxing되어서 int -> Integer, boolean -> Boolean이다.
+
+
+
 ## 에러항목
 
 ### 에러
