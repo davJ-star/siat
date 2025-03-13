@@ -692,6 +692,25 @@ Wrapper class가 있다. 기본타입(8가지)를 객체화 시키는 클래스�
 
 
 
+
+
+
+
+
+
+
+
+
+
+# contents-3.13 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+![image](https://github.com/user-attachments/assets/306f0ad9-a1b6-48c8-a904-f343019d4e0b)
+
+
+
+
+
+
 ## 에러항목
 
 ### 에러
