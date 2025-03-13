@@ -723,7 +723,61 @@ Wrapper class가 있다. 기본타입(8가지)를 객체화 시키는 클래스�
                         .forEach(System.out::println); // 
 ```
 
+```java
+	
+/*
+ * 람다식은 하나의 메서들르 식으로 표현하는 것
+ * - 메서드 이름이 필요가 없다
+ * - 익명메서드(일급객체)
+ * 
+ * 기존방식)
+ *  public String getName(){
+ *      return "siat";
+ * }
+ * 람다식)
+ * (매개변수) -> { 실행문}
+ * () -> "siat";
+ * 
+ * [java 제공하는 함수형 인터페이스] -> 이걸 알아야 문서를 이해할 수 있다.
+ * - Supplier
+ *      : 매개변수없이 반환값만을 가지고 있는 함수형 인터페이스
+ * - Consumer
+ *      : 
+ * - Function
+ *      : 
+ * - predicate
+ *      : 
+ * 
+ */
 
+ /**람다를 이해하고, 함수형 인터페이스를 이해해야한다. */
+
+import java.util.function.Supplier;
+
+import siat.study.lambda.SiatFunction;
+
+public class LambdaMain {
+    public static void main(String[] args) {
+        // 1회용으로 쓸려고 람다식을 쓰는 것.
+        // 함수만 선언되면 된다.
+        // 함수형 인터페이스로 해당 표준을 만들어서 작성할 수 있다.
+        SiatFunction lambdaFunction = (x, y) -> x > y ? x : y;
+        lambdaFunction = (x, y) -> x * y;
+        lambdaFunction = (x, y) -> x + y;
+        System.out.println(lambdaFunction.max(100, 20));
+
+        // Supplier는 java.util.function에서 제공해주는 것이다.
+        // https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html
+        Supplier supplier = () -> "siat";
+
+        System.out.println(supplier.get()
+        );
+        
+    }
+    
+}
+
+```
 
 
 
