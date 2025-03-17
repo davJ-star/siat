@@ -803,6 +803,33 @@ public class LambdaMain {
 
 
 
+```paintext
+
+	soild
+	s: 단일책임원칙
+		각각 클래스는 자기의 역할이 있다.
+		-> DAO를 통해서 DBMS를 접근할 수 있다.
+		즉 DAO랑 CTRL, VIEW는 비지니스로직을 갖지않는다. 
+	has-a 관계 -> relation
+		(반환타입)
+
+
+
+
+erd를 만들었으면 dto를 만든다.
+
+---------------------------
+seq: primary key(not null, no duplication(unique))
+
+각각 controller마다 객체 생성을 해야한다. 이러한 코드는 좋지 않기 때문에 프레임워크는 우리한테 객체 생성을 밑ㄱ;ㅈ; 읺ㄴ,ㄴ디/
+
+
+```
+
+
+
+
+
 ## 에러항목
 
 ### 에러
