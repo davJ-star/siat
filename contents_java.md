@@ -821,11 +821,40 @@ erd를 만들었으면 dto를 만든다.
 ---------------------------
 seq: primary key(not null, no duplication(unique))
 
-각각 controller마다 객체 생성을 해야한다. 이러한 코드는 좋지 않기 때문에 프레임워크는 우리한테 객체 생성을 밑ㄱ;ㅈ; 읺ㄴ,ㄴ디/
+각각 controller마다 객체 생성을 해야한다. 이러한 코드는 좋지 않기 때문에 프레임워크는 우리한테 객체 생성을 맡기지 않는다.
 
 
-```
 
+
+입력 출력 삭제 반환값은 int로 하는게 좋다
+// 전체보기
+    public List<TodoResponseDTO> selectRow(){
+        System.out.println(">>> dao selectRow: List<TodoResponseDTO>");
+
+        return null;
+    }
+
+// 체크된것과 상관없이 같이 있기 때문에 완료한 것과 미완료한 것을 구분
+// 한번에 다하지말기! -> delete 만들기
+
+select
+delete
+select
+
+입력받고 반환해준다.
+
+
+// 현업에서 인터페이스에서 추상메소드를 구현한다: 서비스인플은 구현해놓은 것 / 서비스라고 되어있으면 인터페이스이다.
+
+JDBC랑 ORM(Mybatis JPA)
+            
+controller들 ->|---- service
+일때 service 객체를 하나만 만들어서 controller에 전달해준다. 예시 코드를 한번 복 싶은데...\
+
+
+누군가에 의해서 만들어지는 객체를 bean이라고 한다.
+    // 지금 main에서는 무분별한 객체 생성이 일어난다.
+	
 
 
 
