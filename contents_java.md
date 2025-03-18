@@ -870,7 +870,85 @@ InputStream에 해당하는 System.in을 넣어줬다.
 
 ![image](https://github.com/user-attachments/assets/6be8f05b-5e4b-4399-a17b-812e0129c126)
 
+ctrl가 각각 service를 생성하다보니 문제가 발생한다.
 
+frontcontroller -> springboot에선 servlet을 이용한다.
+--------------------
+익혀야할 코드
+System.exit(0);
+
+switch는 숫자만 되는가?
+
+----------------------
+
+    private String title; 
+    private String content;
+    private int priority;
+	는 프론트에서 입력받는것들이다.
+
+TodoRequestDTO -> table -> TodoResponseDTO 
+반환할 것은 ResponseDTO이다.List에 ResponseDTO가 담긴다.(List에 담김)
+insertTodo인데 return을 줘야하나?
+
+
+
+```java
+package todo.model.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class TodoRequestDTO {
+    
+    private String title; 
+    private String content;
+    private String startDate;
+    // private int check;
+    private String endDate;
+    private int priority;
+
+
+
+}
+```
+
+DAO즉 JPA에서 데이터를 접근할 수 있다. 접근은 request를 처리하기 위해서도 가능하고 response를 처리하기에도 가능하다.
+*이것도 한번에 섞이면 좋지 않으니 구분하는 편이고, 이 기준을 어떻게 최적화할수 있을지 고민해봐야한다.*
+
+프론트에서 넘겨주는건 servlet을 통해서 넘겨주고, 
+이를 각 DTO작업을 거쳐서 넣어주는데 우리는 보기 좋게 DTO를 또 작성하는거지..
+
+(표준을 만들어서 확인할 수 있고, 이를 토대로 만들수있다. 그렇기 때문에 여러개 만들었던것이다.)
+
+
+TodoResponseDTO response = TodoResponseDTO.builder()
+                                        .seq(idx++) // 우리가 주는 코드
+                                        .title(requestDTO.getTitle())
+                                        .content(requestDTO.getTitle())
+                                        .startDate(requestDTO.getStartDate())
+                                        .check(0) // 우리가 주는 코드로 백엔드에서 생성하는 것도 있으므로, DTO를 하나로 통일하기는 어렵다.
+                                        .endDate(requestDTO.getEndDate())
+                                        .priority(requestDTO.getPriority())
+                                        .build();
+        
+        list.add(response);
+
+
+oop 특징
+- 은닉화
+- 다형성
+
+클래스
+- 
+- 
 
 
 
