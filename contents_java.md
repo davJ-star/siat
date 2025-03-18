@@ -779,7 +779,7 @@ public class LambdaMain {
 
 ```
 
-# contents-3.14 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+# contents-3.17 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
 
 ### *tip* 
 - 
@@ -855,6 +855,22 @@ controller들 ->|---- service
 누군가에 의해서 만들어지는 객체를 bean이라고 한다.
     // 지금 main에서는 무분별한 객체 생성이 일어난다.
 	
+
+
+# contents-3.18 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+### *tip* 
+- 
+ 
+### 수업 진행 사항
+1. ㅇ
+
+![image](https://github.com/user-attachments/assets/2b6e2bdc-d8e5-48dc-9f8f-7d4cc4bc9c54)
+InputStream에 해당하는 System.in을 넣어줬다.
+
+![image](https://github.com/user-attachments/assets/6be8f05b-5e4b-4399-a17b-812e0129c126)
+
+
 
 
 
