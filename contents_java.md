@@ -948,9 +948,24 @@ oop 특징
 
 클래스
 - 
-- 
+
+```paintext
+// service도 공통으로 만드는게 낫지 않을까?
 
 
+TodoService service = new TodoService();// 매번 새로 생성하니 일단 해당 List는 남지 않을것..
+
+
+
+
+np가 발생할 수 있다. 삭제했는데 해당 seq을 접근~
+ this.service = service; // 지역변수에서는 지역변수가 매개변수보다 우선순위...
+
+xss문제
+Controller에서 validation 체크할 수 있다.(Front 단에서 미리 막을수있지 않을까? 스크립트를 통해서 프론트에서 검증할 수 있다. => 한번더 체크해주는게 좋다)
+-> 유효성 체크
+-> 화면분기
+```
 
 
 ## 에러항목
