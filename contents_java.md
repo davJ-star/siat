@@ -958,6 +958,10 @@ TodoService service = new TodoService();// 매번 새로 생성하니 일단 해
 
 
 
+
+```
+# contents-3.19 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
 np가 발생할 수 있다. 삭제했는데 해당 seq을 접근~
  this.service = service; // 지역변수에서는 지역변수가 매개변수보다 우선순위...
 
@@ -965,7 +969,11 @@ xss문제
 Controller에서 validation 체크할 수 있다.(Front 단에서 미리 막을수있지 않을까? 스크립트를 통해서 프론트에서 검증할 수 있다. => 한번더 체크해주는게 좋다)
 -> 유효성 체크
 -> 화면분기
-```
+
+
+# contents-3.20 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
+
+
 
 
 ## 에러항목
