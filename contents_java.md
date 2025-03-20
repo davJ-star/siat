@@ -971,14 +971,6 @@ Controller에서 validation 체크할 수 있다.(Front 단에서 미리 막을�
 -> 화면분기
 
 
-# contents-3.20 [실습 내용](https://colab.research.google.com/drive/1Wsa1Je5o_7jNb5LRsE9a7c0ND8Qb__d4#scrollTo=vjw0IKz1so4D)
-### *tip* 
-- 
- 
-### 수업 진행 사항
-1. ㅇ
-
-
 
 ## 에러항목
 
