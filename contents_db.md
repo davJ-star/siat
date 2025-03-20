@@ -102,3 +102,13 @@ DDL: 데이터 정의
 number
 character  (varchar)
 (date)
+
+information engineering 방식
+
+조건이 NULL일때는 IS NOT NULL이나 IS NULL을 사용한다.
+
+---------------------------------------------------------------
+데이터가 어떻게 들어가있는지 봐야한다.
+
+-------------
+2번 체크: 연결연산자 || 
