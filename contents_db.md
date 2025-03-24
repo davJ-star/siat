@@ -116,11 +116,19 @@ information engineering 방식
 
 
 # contents-3.24 [실습 내용]()
+=> 논리적제한이 필요할때도 함수를 쓴다.
+--> 반면에 행의 제한을 둘때는 WHERE사용
+
 ### *tip* 
 - 단일 행 함수(i: N, o: N) VS 그룹함수: 집계함수를 잘 파악할 수 있어야한다.
 - 에러메세지 체크: https://docs.oracle.com/en/error-help/db/ora-00937/?r=23ai
 
 ㅍㅍㅍ  
+
+## 주의사항
+- 변환타입중 TO_DATE()함수를 쓸때 숫자를 날짜타입으로 바끌려면, 해당 숫자는 정수값이어야한다.
+- 
+
 
 
 ### 수업 진행 사항
@@ -141,11 +149,101 @@ information engineering 방식
 - 날짜
 -- SYSDATE
 
+
 + (타입변환)
+-- 
+- TO_NUMBER()
+- TO_CHAR()
+- TO_DATE()
+
+-->타입 일치
+--> 포맷팅해서 보기 좋게 바꾼다.
+
+
+-- 숫자를 날짜타입으로 바끌려면, 해당 숫자는 정수값이어야한다.
+SELECT MONTHS_BETWEEN('25/01/01', TO_DATE(250324)) 
+FROM DUAL ;
+
+
+``` 참고
+SELECT *
+FROM EMPLOYEE
+WHERE DEPT_ID = 90; -- 묵시적 타입변환이 되었다 TO_CHAR()가 되었다.CHAR가 더 높다.
+
+```
+
+```참고
+SELECT 	EMP_NO  ,
+		SUBSTR(EMP_NO, 1, 6),
+		SUBSTR(EMP_NO, 8, 7),
+		SUBSTR(EMP_NO, 1, 6) + SUBSTR(EMP_NO, 8, 7) -- 여기서는 문자열과 문자열을 더하는 건 묵시적으로 오류가 난다.(TO_NUMBER()로 바꿔준다. 문자열 정수인 경우에만 가능)
+FROM EMPLOYEE ;
+
+```
+
+
+
+예시 - 문법)
+
+/*
+-- FORMAT 해당 날짜 포맷으로 변경이 가능하다.
+-- YYYY /  YY // YEAR
+-- MONTH / MON / MM / RM
+-- DY / DAY
+-- HH MI SS
+-- AM | PM
+*/
+
+SELECT 	SYSDATE ,
+		TO_CHAR(SYSDATE, 'YEAR'),
+		TO_CHAR(SYSDATE, 'MM'),
+		TO_CHAR(SYSDATE, 'DAY'),
+		TO_CHAR(SYSDATE, 'Q'),
+		TO_CHAR(SYSDATE, 'AM HH')
+FROM DUAL;
+
+
+예시 - 활용)
+
+SELECT 	EMP_NAME ,
+		TO_CHAR(HIRE_DATE, 'YY "년" MM "월" DD "일"') 
+FROM EMPLOYEE ;
+
+```참고
+만약 한번에 출력하지 않고 구분해서 할려면 SUBSTR()을 이용할 수 있다.
+SELECT 	EMP_NAME ,
+		HIRE_DATE,
+		SUBSTR(HIRE_DATE, 1, 2)  || '년' ||
+		SUBSTR(HIRE_DATE, 4, 2)  || '월' ||
+		SUBSTR(HIRE_DATE, 7, 2)  || '일' 
+FROM EMPLOYEE ;
+```
+
+
+
+
+
 그룹함수: 집계함수
 -- AVG
 
 더미 테이블: DUAL
+
+
+
+
+
+기타함수
+
+-- IF ~ ELSE 논리를 제한적으로 구현하는 오라클 함수
+
+--- CASE EXPR, [SEARCH, RESULT] ELSE DEFAULT END
+--- CASE [WHEN CONDITION THEN RESULT] ELSE DEFAULT END;
+--- DECODE(EXPR, [SEARCH, RESULT], DEFAULT)
+
+
+
+
+
 
 
 
