@@ -241,6 +241,77 @@ FROM EMPLOYEE ;
 --- DECODE(EXPR, [SEARCH, RESULT], DEFAULT)
 
 
+# contents-3.25 [실습 내용]()
+-> 집계함수를 쓰면 일반 컬럼을 쓸수없다.(GROUP BY에 사용된 컬럼 제외)
+집계함수는 N개를 1개로 출력된다. 
+-- GROUP BY에 사용된 컬럼명은 SELECT절에서 그룹함수를 쓰지 않고 사용할 수 있다. 
+한개의 그룹함수에서만 적용가능..
+
+### *tip* 
+- GROUP BY에서 함수를 넣어서 그룹핑 VS HAVING이랑 체크! **전후관계이다.**
+- 
+
+## 주의사항
+- 변환타입중 TO_DATE()함수를 쓸때 숫자를 날짜타입으로 바끌려면, 해당 숫자는 정수값이어야한다.
+- 
+
+
+
+### 수업 진행 사항
+1.  GROUP BY
+2.  HAVING
+3.  JOIN
+
+
+
+-|O----O|<
+
+
+
+
+
+
+
+------------------------
+
+
+
+GROUP BY에서 함수를 넣어서 그룹핑 VS HAVING이랑 체크!
+전후관계이다.
+
++ GROUP BY -> HAVING
+
+
+
+JOIN
+서로 연관되는 다른 테이블에 있는 컬럼까지 한번에 조회하기 위한 대표적 방법
+
+EQUAL JOIN은 앞에 INNER 생략가능 -> 외래키에 대한 비교 조건은 필요하다.
+ON -> Optional을 쓸수 없을때 null이 아니므로 
+USING -> =이랑 같다.
+TABLE명 ALIAS USING(컬럼명)
+USING에서 사용한것이 즉 FROM에서 사용한것이기 때문에 활용가능하다.
+
+
+FROM EMPLOYEE e이 FROM EMPLOYEE e, DEPARTMENT d과 동일한 의미를 가진다.
+```
+FROM EMPLOYEE e
+JOIN DEPARTMENT d USING(DEPT_ID)
+JOIN JOB j USING(JOB_ID)
+JOIN LOCATION l  ON(l.LOCATION_ID = d.LOC_ID)
+```
+
+Outer
+-> LEFT JOIN
+-> RIGHT JOIN
+-> FULL JOIN
+
+Inner
+
+
+** 키가 없어도 ON을 사용할 수 있다.(equals가 아니어도 된다.)**
+
+self () relationship
 
 
 
