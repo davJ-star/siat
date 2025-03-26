@@ -6,7 +6,8 @@
 
 ## siat에서 진행한 프로젝트 및 코멘트 내용을 적을 것.
 (프로젝트 레포에서 링크형태로 변경할 것이며, 일기 형식으로 작성한다.)
-
+- [스타벅스](https://github.com/siat-class-project/starbuck-menu-site)
+- 
 
 ## python
 포트폴리오: ai, 데이터분석, 장고(그외 서버 개발)
