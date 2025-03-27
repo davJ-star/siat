@@ -1,5 +1,8 @@
 # 오답 노트
 
+
+
+
 ```sql	
 /**
 13. 학과 별 휴학생 수를 파악하고자 핚다. 학과 번호와 휴학생 수를 표시하는 SQL 문장을
@@ -104,6 +107,11 @@ HAVING AVG(POINT) >= 4.0;
 ```
 -------------------------------------------------
 
+
+![image](https://github.com/user-attachments/assets/8b9a584e-1d89-4510-b593-a33d964b486d)
+
+![image](https://github.com/user-attachments/assets/73b254dc-af2b-4fc2-a58f-2e68befb3e7b)
+
 ```sql	
 /**
  * 19. 춘 기술대학교의 "홖경조경학과"가 속핚 같은 계열 학과들의 학과 별 젂공과목 평점을
@@ -121,6 +129,11 @@ WHERE ;
 
 
 SELECT *
+
+
+
+
+
 FROM TB_DEPARTMENT td 
 WHERE DEPARTMENT_NAME  = '환경조경학과'	
 
