@@ -453,6 +453,10 @@ NULL 처리가안될경우 NVL()처리
 ### DELETE
 
 
+## ALTER
+
+### 외래키 조건
+![image](https://github.com/user-attachments/assets/4ec3f1fd-9970-4a9c-8a5e-b62581ea1c4a)
 
 
 
