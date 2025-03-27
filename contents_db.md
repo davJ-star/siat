@@ -316,10 +316,6 @@ self () relationship
 
 
 
-
-
-
-
 # contents-3.26 [실습 내용]()
 ### *tip* 
 - GROUP BY에서 함수를 넣어서 그룹핑 VS HAVING이랑 체크! **전후관계이다.**
@@ -397,7 +393,76 @@ NULL 처리가안될경우 NVL()처리
 
 
 
+# contents-3.27 [실습 내용 오답](https://github.com/davJ-star/siat/blob/main/class-code/siat-sw/sql_hw-checkLst.md)
+### *tip* 
+- 
+- 
 
+## 주의사항
+- 
+
+
+
+### 수업 진행 사항
+1. DDL: 테이블 생성
+2. DML: 
+
+제약조건: 5가지
+- NOT NULL
+- UNIQUE
+- Primary
+- Reference(Foreign key)
+- CHECK
+
+
+```
+- NOT NULL
+- UNIQUE
+해당 조건으로 기본키를 만들어볼 수 있다.
+```
+
+## DDL
+
+
+### 테이블 생성: CREATE
+```sql
+/*
+ * CREATE TABLE TABLE_NAME(
+ * 	COLUMN_NAME DATATYPE [DEAULT][CONSTRAINT]
+ * 	[CONSTRAINT]
+ * 
+ * ) 
+ */
+
+
+
+```
+#### 제약조건
+-- CONSTRAINT(NOT NULL, UNIQUE, Primary key, Reference(Foreign key), CHECK)
+
+## DML(INSERT, UPDATE, DELETE)
+### INSERT
+```sql
+	INSERT INTO DUMMY_TBL VALUES('JSLIM', 'JSLIM', '섭서비', '서울', SYSDATE);
+
+```
+
+### UPDATE
+
+
+### DELETE
+
+
+
+
+
+
+
+
+
+
+### 참고
+![image](https://github.com/user-attachments/assets/06ed8fa7-c1b2-4086-b37e-2fcf4ad68260)
 
 
 
