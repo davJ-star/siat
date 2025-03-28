@@ -471,9 +471,65 @@ NULL 처리가안될경우 NVL()처리
 
 
 
+# contents-3.27 [실습 내용]()
+
+1. ㅇ
+2. ㅇ
 
 
 
+-- FROM INLINE VIEW를 사용
+-- TOP N 분석 개념 -> INLINE VIEW를 쓸수밖에 없다. 
+-- 조건에 맞는 최상위(최하위) 레코드 N개를 식별해야하는 경우 (차등)
+
+
+/*
+ 1. 정렬
+ 2. ROWUM 정렬된 레코드에 순번 부여
+ 3. 부여된 순번을 이용해서 필요한 수만큼 식별
+ */
+
+
+
+
+#### 차등쿼리를 이용하여 다른 관점에서 푼 코드
+```
+/**
+ * 18. 국어국문학과에서 총 평점이 가장 높은 학생의 이름과 학번을 표시하는 SQL 문을
+작성하시오.
+
+
+ */
+SELECT DEPARTMENT_NO 
+FROM TB_DEPARTMENT td 
+WHERE DEPARTMENT_NAME = '국어국문학과'
+						
+					
+SELECT ts.STUDENT_NAME, AVG(tg.POINT) 
+FROM TB_STUDENT ts 
+JOIN TB_GRADE tg ON(ts.STUDENT_NO = tg.STUDENT_NO)
+WHERE 	DEPARTMENT_NO = 	(
+							SELECT DEPARTMENT_NO 
+							FROM TB_DEPARTMENT td 
+							WHERE DEPARTMENT_NAME = '국어국문학과'
+						)
+GROUP BY ts.STUDENT_NAME 
+HAVING AVG(tg.POINT) =	(
+							SELECT MAX(AVG(tg.POINT) )   
+							FROM TB_STUDENT ts 
+							JOIN TB_GRADE tg ON(ts.STUDENT_NO = tg.STUDENT_NO)
+							WHERE 	DEPARTMENT_NO = 	(
+														SELECT DEPARTMENT_NO 
+														FROM TB_DEPARTMENT td 
+														WHERE DEPARTMENT_NAME = '국어국문학과'
+													)
+							GROUP BY ts.STUDENT_NAME 
+						)
+	
+
+```
+
+![image](https://github.com/user-attachments/assets/4e0eab8f-9727-40fa-b825-46c8fdac0655)
 
 
 
