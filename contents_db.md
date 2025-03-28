@@ -531,6 +531,7 @@ HAVING AVG(tg.POINT) =	(
 
 ![image](https://github.com/user-attachments/assets/4e0eab8f-9727-40fa-b825-46c8fdac0655)
 
+![image](https://github.com/user-attachments/assets/8afb445d-417d-4056-9a4d-3b9b53e15b67)
 
 
 
