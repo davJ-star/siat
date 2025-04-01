@@ -40,7 +40,44 @@ get은 해당 결과값을 가져오는데 쓴다.
 
 
 
+# contents-4.1 [실습 내용]()
 
+
+
+### NULLPOINTEREXCEPTION ERROR
+
+#### 수정전
+```JAVA
+catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+```
+
+#### 수정후
+
+/*if (conn != null) {conn.close();}*/로 NPE를 해결한다.
+```JAVA
+catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (conn != null) {
+                        conn.close();
+                        
+                    }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+```
 
 
 
