@@ -106,6 +106,14 @@ servlet에서 처리하며, jsp에 값을 넣는다.
 servlet의 역할: controller로 분기 및 service로 넘겨준다. 그리고 뷰(client 또는 브라우저 or 프론트)로 심어준다.
 				(뷰는 불러온다.)
 
+
+
+session을 쓰는걸 권장하지 않는다. (30분동안 해당 데이터에 접근 가능해진다.)
+request.setAttribute()를 쓰고 값을 심어준다( = 넘겨준다)
+view.forward()를 사용해서 뿌려준다.
+```
+
+
 ```java
 			HttpSession session = request.getSession();
 //			session.setAttribute("msg", id);
@@ -113,7 +121,59 @@ servlet의 역할: controller로 분기 및 service로 넘겨준다. 그리고 �
 
 ```
 
-session을 쓰는걸 권장하지 않는다. (30분동안 해당 데이터에 접근 가능해진다.)
-request.setAttribute()를 쓰고 값을 심어준다( = 넘겨준다)
-view.forward()를 사용해서 뿌려준다.
+```java
+package test;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import test.domain.LoginRequestDTO;
+import test.domain.LoginResponseDTO;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String clientPath = request.getRequestURI();
+		System.out.println("debug >>> getRequestURI(): " + clientPath);
+		
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("password");
+		
+		LoginRequestDTO requestDto = new LoginRequestDTO();
+		requestDto.setId(id);
+		requestDto.setPassword(pwd);
+		// 값을 심을 수 있는 영역: request, session, context, page
+		// 지금은 request, session으로 심는다.
+		
+		Boolean flag = true;
+		
+		// 로그인이 정상적으로 되었다.고 가정한다.
+		LoginResponseDTO result = new LoginResponseDTO();
+		result.setName("정성욱");
+		result.setId(id);
+		result.setPasswd(pwd);
+		
+		
+		if (result != null) {
+			request.setAttribute("msg", result); // 여기서 심어준다.
+			RequestDispatcher view = request.getRequestDispatcher("./ok.jsp"); // msg를 사용해서 가져온 .jsp이며, 이를 화면에 응답으로 처리하기위해 dispatcher를 사용해서 forward를 한다.
+			view.forward(request, response); // 요청해서 뿌려놓은 jsp를 응답값으로 반환한다.
+			
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("./fail.jsp"); // msg를 사용해서 가져온 .jsp이며, 이를 화면에 응답으로 처리하기위해 dispatcher를 사용해서 forward를 한다.
+			view.forward(request, response);
+		}
+		
+	}
+
+}
+
 ```
