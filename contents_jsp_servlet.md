@@ -99,3 +99,21 @@ controller 역할을 servlet으로 작성한다.
 받아와서 dto에 담아서 백엔드에서 처리하기 쉽도록 만든다.
 
 ```
+
+```paintext
+
+servlet에서 처리하며, jsp에 값을 넣는다.
+servlet의 역할: controller로 분기 및 service로 넘겨준다. 그리고 뷰(client 또는 브라우저 or 프론트)로 심어준다.
+				(뷰는 불러온다.)
+
+```java
+			HttpSession session = request.getSession();
+//			session.setAttribute("msg", id);
+			session.setAttribute("msg", result);
+
+```
+
+session을 쓰는걸 권장하지 않는다. (30분동안 해당 데이터에 접근 가능해진다.)
+request.setAttribute()를 쓰고 값을 심어준다( = 넘겨준다)
+view.forward()를 사용해서 뿌려준다.
+```
