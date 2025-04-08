@@ -177,3 +177,35 @@ public class LoginServlet extends HttpServlet {
 }
 
 ```
+
+
+# contents-4.08[실습 내용]()
+
+
+```paintext
+jsp: 내부에서 java로 파싱된다.
+
+tomcat이라는 was는 jvm을 포함해야한다.
+
+*.siat
+
+---------------------------------------------------
+요청을 받는 역할
+파라미터를 전달받는다.
+dto로 만들어서 service에 전달
+dto로 만들어서 데이터응답
+분기(forward / redirect)
+
+-----------------------------------------------------
+
+View를 만든 이유는 분기 때문이다.
+
+-----front-controller-----
+request만 담당하고, 나머지는 뒤에 있는 것만한다.
+응답 완성된걸 보내주기만한다.
+
+
+
+String clientPath = request.getRequestURI();
+System.out.println("debug >>> getRequestURI(): " + clientPath);
+```
