@@ -209,3 +209,66 @@ request만 담당하고, 나머지는 뒤에 있는 것만한다.
 String clientPath = request.getRequestURI();
 System.out.println("debug >>> getRequestURI(): " + clientPath);
 ```
+
+
+# contents-4.09[실습 내용]()
+
+```
+화면조차도 controller를 통해서 이동해야한다.
+
+getParameter()는 문자열로 들어온다.
+서비스 관계 가짐(객체 생성)
+
+
+
+
+
+
+controller에서
+
+지시자
+
+service 메소드의 실행문 <% %>
+
+표현식: 브라우저 출력결과를 보여줌. ;을 붙이면 안된다.
+ <%= %>
+
+
+el 문법 
+${}
+
+
+
+# uri로 링크를 걸어줬지만 다른 ㅍ ㅏ일을 걸어줘야한다.
+
+
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
+
+	<c>
+	      <tr>
+	        <td>${}</td>
+	        <td>${}</td>
+	        <td>${}</td>
+	      </tr>
+      	</c>
+
+
+	<c:forEach items="${list}" var="dto">
+	      <tr>
+	        <td>${dto.title}</td>
+	        <td>${dto.status}</td>
+	        <td>${dto.priority}</td>
+	      </tr>
+      	</c:forEach>
+
+
+-------------
+a href에서 ?를 사용해서 넘겨주면 select를 통해서 작성할 수 있게된다.
+
+
+Optional로 .get()으로 제공해줘야한다. result를 심는게 필요하다
+// 데이터가 있을때 꺼내겠다.
+
+
+```
