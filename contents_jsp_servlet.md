@@ -272,3 +272,32 @@ Optional로 .get()으로 제공해줘야한다. result를 심는게 필요하다
 
 
 ```
+
+# contents-4.10[실습 내용]()
+
+
+```
+list.jsp를 바로 호출하면 안된다.
+데이터 심지도 않았음.
+
+리스트를 가져온다. 전체보기를 통해서 가져온다.
+새로운 request를 줄수도 있다.
+redirect로 해야한다.
+
+-> forward를 쓰는게 아님 그러면 그냥 해당 페이지만 보여준다.(그리고 데이터도 심어야함. 심고, 해당 페이지를 보내주면 되긴함.)
+
+내장객체가 있음.
+
+
+-----------
+HttpSession session = request.getSession(false);
+		session.invalidate();
+으로 진행하고, 세션을 끊어준다. 없애준다.
+-----------
+지금 ctrl class로 매핑한 것을 
+spring boot로 들어가면, method 단위로 ctrl 매핑된다.
+
+
+
+
+```
