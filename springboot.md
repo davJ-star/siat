@@ -152,6 +152,89 @@ dbms는 테이블로 매핑된다.
 
 ```
 
+# 4.15
+```
+mybatis -> 업무로직 복잡
+jpa -> 간단하게 읽기 전용으로 select 용도로 사용한다.
+--------------------------------------------------------------------
+
+설정
+
+ --------------resources---------------------------
+static
+외부자원으로 생각
+예를 들어 mybatis 설정 resources에 들어가게된다.
+--------------------------------------------------------------------
+application.properties파일에 추가한다.
+
+connection pull 세팅이 필요한데, 편하게 hikari 쓰기위해서 사용. (지우게 되면 내부적으로 tomcat)
+
+# DB property Setting 
+spring.datasource.hikari.driver-class-name=
+spring.datasource.hikari.jdbc-url=
+spring.datasource.hikari.username=
+spring.datasource.hikari.password=
+
+--------------------------------------------------------------------
+프레임워크가 가장 먼저 시작할때 application.properties파일 보고 진행
+
+mappers 폴더에 orm에 해당하는 내용을 추가한다.
+.xml파일을 만들어 query
+
+.xml에 config (환경정보)하면서 별칭을 설정등을 할 수 있다. 
+
+
+
+업무로 나눠 업무당 xml을 만드는 회사도 있고 쿼리당 만드는 회사도 있다.
+
+
+
+영속적인 활동을 한다. -> @repository
+
+
+mapper태그가 어디서 오는지 연결되는지 알아야한다.
+namespace로 패키지를 등록한다.
+식별자를 갖는 태그가 가져온다.
+
+
+
+# query가 java가 아니라 xml로 빠졌다.
+
+resoures 폴더 -> mappers 폴더에 생성하구 해당 경로를 
+application.properties에 등록한다.  등록해놨으니 사용할 수 있게된다.
+(아직은 config를 제대로 작성하진 않아서 별칭을 주진 않았다.)
+
+이제 @mapper를 주고 interface를 만들어주면 query를 xml로 매핑된다.
+메소드명을 그대로 id로 작성하고, namespace로 interface를 만들어주면 query를 xml로 연결해주기 위해 패키지 경로를 작성한다.
+xml에 이제 jdbc에서 잦바처리한 코드를 태그로 감싸고, 안에 query문을 작성한다.
+
+우리는 이제 객체만 넘겨준다. mapper가 아니라 mybatis가 꺼내서 query를 처리한다.
+
+
+
+
+namespace
+paramType
+resultType
+
+<!CDATA[[
+
+]]>
+
+
+orm으로 하면 객체랑 매핑을 하는 작업이기 때문에 
+Integer로 작업하는게 박싱이 안되고 효율적이고 좋다.
+
+
+jpa할때 optional을 사용한다.
+
+
+
+
+
+```
+
+
 
 
 # 에러 해결
