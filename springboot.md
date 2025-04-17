@@ -236,6 +236,56 @@ jpa할때 optional을 사용한다.
 
 
 
+# 4.16
+```
+
+@RestController : @Controller + @ResponseBody. JSON/XML 형태로 응답을 보내는 Controller에 붙이는 annotation
+    * @Controller : Spring MVC에서 Controller 역할을 하는 클래스에 붙이는 annotation
+
+
+
+get 요청시 두가지를 선택할 수있긴한데
+@requestParams vs @pathVariable
+
+
+spa 기반일때 @pathVariable로 일반적으로 넘기고
+jsp 기반일때는 @requestParams 일반적으로 넘긴다.
+
+
+데이터를 심어야하는 경우는 Model을 사용한다.
+servlet에서 request.setAttribute를 이용해서 심어줬다.
+
+하지만, spring boot에서는 Model model을 이용해서  addAttribute를 이용한다.
+
+test case로 만들때 dto를 구분하기.
+
+
+
+// 
+
+<% -- --%>로 체크한다.
+
+
+경로문제를 잘 잡아야한다.
+
+
+todo였는데 
+
+http://localhost:8088/todo/view/4
+
+-> http://localhost:8088/todo/view 여기까지가 경로였다.
+
+"../../todo/delete?seq=${read.seq}"로 처리해보면 /list로 에러가 난다.
+"redirect:/list"를 했기때문이다. -> 그렇기 때문에 해당 에러는 
+
+
+front-controller로 진행한다.
+
+```
+
+
+
+
 
 # 에러 해결
 
