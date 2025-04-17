@@ -329,6 +329,12 @@ json 방식으로 내려주고, 이는 템플릿을 통해서 내려주는데 Re
 내려줄수 없을땐  ResponseEntity<Void>로 내려준다.
 ```
 
+![image](https://github.com/user-attachments/assets/b7b31746-4971-42c6-9c07-1acd3dfb427d)
+![image](https://github.com/user-attachments/assets/c3bfd09d-4709-4f90-98c8-69e635601804)
+
+![image](https://github.com/user-attachments/assets/d65e14c8-94ed-4ab1-b841-2957435b803f)
+![image](https://github.com/user-attachments/assets/69c4377c-682d-4edc-9f26-67a89742a74a)
+
 
 
 # 에러 해결
