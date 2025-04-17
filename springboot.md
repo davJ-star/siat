@@ -335,6 +335,72 @@ json 방식으로 내려주고, 이는 템플릿을 통해서 내려주는데 Re
 ![image](https://github.com/user-attachments/assets/d65e14c8-94ed-4ab1-b841-2957435b803f)
 ![image](https://github.com/user-attachments/assets/69c4377c-682d-4edc-9f26-67a89742a74a)
 
+#### swagger-ui 관련 annotaton 요약
+```
+
+/*
+ * ResponseEntity : body, header, status를 포함하는 응답 객체
+ * header : 응답 헤더
+ *  header는 왜 필요한가?
+ *  - 클라이언트와 서버 간의 통신에서 메타데이터를 전달하는 데 사용된다. (클라이언트와 서버 간의 통신에서 필요한 추가 정보를 전달하는 데 사용된다.)
+ *  - 클라이언트가 요청한 데이터의 형식이나 인코딩 방식, 캐시 정책 등을 지정할 수 있다.
+ *  - 서버가 응답하는 데이터의 형식이나 인코딩 방식, 캐시 정책 등을 지정할 수 있다.
+ * body : 응답 본문
+ * status : 응답 상태 코드
+ */
+
+```java
+    @Bean
+    public OpenAPI openAPI() {
+        // return new OpenAPI()
+        //         .components(new Components()
+        //                 .addSchemas("UserRequestDTO", new Schema().type("object")
+        //                         .addProperties("id", new StringSchema())
+        //                         .addProperties("pwd", new StringSchema())
+        //                         .addProperties("name", new StringSchema()))
+        //                 .addSchemas("UserResponseDTO", new Schema().type("object")
+        //                         .addProperties("id", new StringSchema())
+        //                         .addProperties("pwd", new StringSchema())
+        //                         .addProperties("name", new StringSchema())));
+        return new OpenAPI().info(apiInfo());
+    }
+
+
+```
+스크립트를 통해서 json 파일을 받게 된다. -> 스크립트를 통해 통신을 하게 된다면, json으로 보낸다.
+넘어오는게 @RequestBody라고 명시해준다. 우리가 했을때, json으로 넘겨주지 않기 때문에 굳이 필요가 없었다.
+(json을 dto로 converting해주는 것이다.)
+
+
+스키마에 대해 더 상세하게 설명하는게 가능하다.
+
+
+
+
+// api 엔드포인트가 어떤 그룹에 속하는지를 알려주는 그룹핑 어노테이션
+@Tag(name = "Todo", description = "할일 관리 API") // Swagger에서 사용할 태그를 지정한다.
+@Bean
+@Configuration
+
+    @ApiResponse(responseCode = "200", description = "정상처리") // 200 OK 응답 설명
+    @ApiResponse(responseCode = "400", description = "비정상처리", 
+                    content = @Content(schema = @Schema(implementation = TodoRequestDTO.class))) // 400 Bad Request 응답 설명
+
+
+
+@Schema(description = "Todo 요청 DTO")
+// @Schema(name = "UserRequestDTO", description = "UserRequestDTO")
+public class UserRequestDTO {
+    @Schema(description = "아이디", example = "test")
+    private String id;
+    @Schema(description = "비밀번호", example = "1234")
+    private String pwd;
+    @Schema(description = "이름", example = "홍길동")
+    private String name;
+}
+
+
+```
 
 
 # 에러 해결
