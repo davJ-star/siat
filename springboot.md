@@ -283,7 +283,51 @@ front-controller로 진행한다.
 
 ```
 
+# 4.17
 
+```
+full browsing 방식 => request, response가 있다. response에서는 
+
+
+
+--------------------------
+업무에 따라서 구분한다. -> 
+??
+
+
+-----
+동일한 이름으로 지정해야한다. -> dto기준
+
+```
+session.setAttribute("UserSession", response);
+session.invalidate(); // 세션을 무효화한다
+
+```
+```
+There was an unexpected error (type=Method Not Allowed, status=405).
+Method 'GET' is not supported.
+org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
+```
+
+
+
+------------*미완성된 낸용*--------------
+1. UserMapper.java는 아직이다.
+
+--------------------------
+model은 데이터에 해당하는가?
+
+
+logout이 getMapping이었냐,,,
+
+--------------------------
+
+비동기 방식 즉, spa는 스웨거를 이용한다. -> rest controller
+
+json 방식으로 내려주고, 이는 템플릿을 통해서 내려주는데 ResponseEntity<>를 통해서 내려준다.
+
+내려줄수 없을땐  ResponseEntity<Void>로 내려준다.
+```
 
 
 
