@@ -402,6 +402,93 @@ public class UserRequestDTO {
 
 ```
 
+# 4.18
+반환할때는 viewResolver를 통해서 prefix와 suffix 경로를 참고해서 보낸다.
+
+@Controller는 @RequsetBody를 통해서 json 포맷으로 받을 수 있다.
+	 	-> 그게아니면 DTO로 받을 수 있다.
+
+@RestController로도 가능하긴한데, 응답을 @ResponseEntity를 이용한다.
+
+
+
+build.gradle -> 라이브러리
+
+-------------유효성 체크------------------
+
+
+Bean Validation 1.0 은 JSR-303으로 validation 라이브러리를 등록한다.
+dto로 json의 유효성을 검증할 수 있다. -> dto에 걸어둔다.
+Pattern
+
+
+-----------------------------
+public String insert(@Valid TodoRequestDTO params, BindingResult bindResult) {}
+
+오류가 있다면 알려줄곳이 필요하지 않을까?
+처리하지 못한 것을 담아서 보내주기 위해서 BindingResult bindResult를 사용한다.
+
+검증하지 못한 내용들이 BindingResult bindResult담긴다.
+ 
+조건 처리 -> Map 
+
+
+````
+ model.addAttribute("error", map); // 에러메시지를 model에 담는다.
+        }
+
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map); // 
+
+```
+
+
+-> validation은 controller에서 체크하는 작업이다.
+
+------------controller 유효성 체크해서 service로 이제 넘겨준다.-----------
+
+
+db를 연동하는 방법: mybatis -> @Mapper interface로 만든다.(xml과 연결) / jpa -> @Repository로 interface로 만든다.
+
+jpa에서는 일단 query를 구현하고 있는 인터페이스가 처리해준다.
+
+// 테이블로 만들어줄수도 있고,
+// crud로 만들어준다.
+
+-> 그렇기 위해서 entity를 만들고 사용하게 된다.
+// entity는 테이블과 매핑되는 클래스이다.
+다만, entity는 테이블과 1:1로 매핑되는 것이 아니라, 테이블의 컬럼과 1:1로 매핑되는 것이다.
+그리고 DTO처럼 쓰면 안된다. -> 그렇기때문에 연결할때 한단계가 더 추가 된다.ㅋㄴ
+
+
+하이버레이트를 이용한다.
+-> 엔티티는 프로그래밍영역에서는 테이블 스키마 역할을 한다.
+
+jpa 프로젝트는 model -> dao -> dto랑 entity 폴더로 나눠짐
+--> 서로 구분해야한다.
+
+
+
+jpa 보편적으로 해당 설정을 진행한다.
+```
+# jpa
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12cDialect
+
+### auto-type create, update, none -> 실행이 될때, 테이블을 만들어준다.
+spring.jpa.hibernate.ddl-auto=create
+# spring.jpa.show-sql=true
+
+# 콘솔출력
+spring.jpa.properties.hibernate.show_sql=true
+
+# 가독성있는 포맷형식
+spring.jpa.properties.hibernate.format_sql=true
+
+# 디버깅이 용이하도록 추가 정보 출력
+spring.jpa.properties.hibernate.use_sql_comments=true
+```
+
+
 
 # 에러 해결
 
