@@ -488,8 +488,10 @@ spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.properties.hibernate.use_sql_comments=true
 ```
 
+#### 요약
+```
 
-
+```
 # 에러 해결
 
 처음에 dispatcherServlet에서 문제가 발생했다. 그래서 extension 문제인지 알았는데 일단 cache를 모두 지우고 나머지 활동을 진행하는게 중요하다는 것을 알았다.
