@@ -264,6 +264,15 @@ axios.patch(url, data, config);
 
 
 
+![image](https://github.com/user-attachments/assets/98acb350-e821-46a6-8273-3cbf28b37312)
+![image](https://github.com/user-attachments/assets/d5ec9604-bf70-44ab-967d-6748e785d77a)
+![image](https://github.com/user-attachments/assets/c85fcdf0-7c39-4bef-8934-fbfc1b76f0ed)
+![image](https://github.com/user-attachments/assets/7cccbe0f-9880-4be1-99e5-16cdd3f23b58)
+![image](https://github.com/user-attachments/assets/0c26ed66-80f7-48b1-bf96-78543dfab71e)
+
+
+
+
 ----------------------------------------------------------
 
 # [contents-4.22 실습 내용]("")
