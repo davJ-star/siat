@@ -33,7 +33,9 @@ npx(e) -> node package(binaries) execute
 npx create-react-app siat-react
 컴포넌트 -> 함수로 활용 / return으로 html 다룸.
 styled-components css-modules
+```
 
+```paintext
 ----------------------------------------------------------
 users.map((user) => {
                         // <User name={user.name} info={user.info}/>
@@ -51,6 +53,7 @@ users.map((user) => {
 
 
 return을주지 않아서 컴포넌트로 반환되지 못했다. -> 실수
+```
 ----------------------------------------------------------
 
 # [contents-4.22 실습 내용]("")
