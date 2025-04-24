@@ -449,6 +449,82 @@ useEffect(, [])
 // 어제는 어떻게 했는지 체크가 필요하다.
 
 
+# [contents-4.24 실습 내용]("")
+
+return을 항상 작업해야한다.
+그리고, 왜 const lst로 사용한거 사용하면 동작하지 않는다.
+==> 동기화가 필요하다.
+
+----------------
+key에 대한 에러 -> have a unique "     key" prop.
+
+
+
+```첫번재로 props를 전달한다. 대신에 title등을 통해서 자기가 원하는 값을 넣을 수 있다. 대신에 이름을 통일 시켜줘야겠지.
+  {
+                            lst.map((todo) => (
+                                <TodoItem   title={todo.title}
+                                            status={todo.status}
+                                            priority={todo.priority}
+                                
+                                />
+                            ))
+                        } 
+```
+
+----------------
+props에 대해 정리한다.
+
+
+----------------
+인라인 조건문: string도 되지만, elements를바로 넣어도된다.
+
+if도 가능하지만 삼항조건도 가능 -> 스크립트 영역으로 열어서 진행하고있다.
+
+
+
+=> 화면이 바뀌면된다. react-router-dom
+```
+<BrowserRouter>
+      <Routes>
+        <h2>페이지 이동을 위한 라우터 연습</h2>
+        <Route path='/' element={<IndexPage />}/>
+        <Route path='/user/loginForm' element={<LoginForm />}/>
+        <Route path='/user/success' element={<SuccessPage />}/>
+        <Route path='/user/success/todoView' element={<Todo />} />
+
+        {/* <Router navigator={}/>
+        <Router navigator={}/>
+        <Router navigator={}/>
+        <Router navigator={}/> */}     
+      </Routes>
+    </BrowserRouter>
+
+```
+
+=> useEffect()를 진행한다.
+=> 클릭하면, 해당페이지로 넘겨버린다. "/read"로 진행한다. 상태를 공유해야하는구나..
+							=> seq
+todoView.jsx에게 어떻게 넘겨줄까?
+
+
+
+
+```
+
+await axios
+                .get("/read", { params: seq })
+                .then((response) => {
+                    setTodo(response);
+
+                })
+                .catch(error => {
+                    console.error('Error fetching todo:', error);
+                    alert('데이터 불러오기 실패');
+                    moveUrl('/');
+                  });
+
+```
 
 
 
