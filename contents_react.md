@@ -527,9 +527,35 @@ await axios
 ```
 
 
+# [contents-4.25 실습 내용]("")
 
 
+```
+	form 태그 자체가 상태관리가 된다면,
+	react에 의해서 상태관리가 되어야한다.
+	
+	
+	shared state
+	
+	부모쪽에서 state를 관리하고 있기 때문에 자식에서 공유할 수 있다.
+	자식에서 handling 가능하다.
+	-> 함수를 전달한다.\
+	
+	-> 이름으로 전달해줬을 때, 가능하다.
+	
+	
+	
+	Composition: 
+	-> Containment: contain -> 하위 컴포넌트를 포함하는 형태의 합성 방법
+	
+	- Containment: props.children을 체크하면 된다.
+	- Specialization: 우리가 props 일반적으로 보낸걸 생각하면 된다.
+	
+	
+	
+	
+	vs 상속
 
-
+```
 
 
