@@ -173,4 +173,139 @@ react에서 axios 요청시 쿠키 세션 값을 세팅해서 보내야한다.
 	withCredentials : true,
 ```
 
+
+# 4.29
+
+
+```
+<고전 방법>
+1. 로그인
+2. 세션을 만들어서 사용자 정보로 넘겨준다. (세션을 포함해서 응답을 보내준다.)
+3. 사용자는 body에 세션 정보(세션id)를 담아서 서버에 보낸다.
+4. 
+
+
+---------------
+<토큰 방법>
+토큰 방법이 등장했다. -> **jwt랑 쿠키랑 세션에 대한 면접 질문이 나올 수 있으니, 해당 내용을 정리한다.**
+1. 로그인
+2. 서버에서 token을 발급받고(access / refresh token 생성)
+3. http의 헤더에 access / refresh token을 담아 보낸다.
+4. 클라이언트에서 토큰을 심는 작업을 진행한다.
+5. 토큰을 포함해서 요청을 보낸다.
+6. 클라이언트의 토큰이 유효한지 검증을 한다.(filter 제작)
+6-1. 검증 성공
+6-2. 검증 실패
+
+
+[만료되었던 상황]
+1. 토큰이 만료되었습니다.로 막는다.
+
+1. 토큰을 
+2. 
+3. 
+
+---------------
+사용자 응답을 받을 수 없는 문제가 발생한다.
+---------------
+
+```
+.then((response) => {
+            console.log('Login successful:', response.data);
+            // console.log(response.data);
+            // console.log(response.status);
+            // console.log(response.statusText);
+
+
+// **4번에 대한 코드**
+            console.log(response.headers);
+            localStorage.setItem('accessToken', response.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
+}
+```
+
+---------------
+
+개발자입장에선 body부분이 중요하다.
+보안입장에선 header부분이 중요하다.
+
+
+---------------
+	.setSubject(email)  // JWT의 subject 설정 (사용자 이메일)
+        	.setIssuedAt(new Date()) // JWT 발급 시간 설정
+            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // JWT 만료 시간 설정 (1시간 후) 1초 * 1000 = 1ms, 1분 * 60 = 1s, 1시간 * 60 = 1m
+            .signWith(key) // 서명 알고리즘 설정
+            .compact();
+
+UserResponseDTO response = UserResponseDTO.builder()
+                // => 빼고 반환하는게 맞다.  .email(params.getEmail()) // email
+                .accessToken(accToken) // access token
+                .refreshToken(reToken) // refresh token
+                .build(); // UserResponseDTO를 생성한다.
+        return response; // response를 반환한다.
+
+
+
+// -> .header("Authorization", "Bearer "+response.getAccessToken()) // JWT Access Token을 헤더에 추가한다.  "Bearer "+response.getAccessToken()
+@PostMapping("/login") // @RequestMapping("/login")과 @PostMapping("/login")은 같은 의미이다.
+    // 현재 endpoint는 /api/v1/auth/login이다.
+    public ResponseEntity<UserResponseDTO> login(@RequestBody UserRequestDTO params) { // @RequestBody 어노테이션을 사용하여 JSON 데이터를 DTO로 변환한다.
+        System.out.println("debug >> Login(ctrl) endpoint hit");
+        System.out.println("debug >> Login(ctrl) params : " + params.toString());
+        UserResponseDTO response = authService.loginService(params); // service를 호출한다.
+        return ResponseEntity.ok()
+                                .header("Authorization", "Bearer "+response.getAccessToken()) // JWT Access Token을 헤더에 추가한다.  
+                                .header("Refresh-token", response.getRefreshToken()) // JWT Refresh Token을 헤더에 추가한다.
+                                .body(response); // ResponseEntity를 반환한다.
+    }
+---------------
+filter를 만들어서 체크해본다.
+-> public class JwtFilter implements Filter {} => @override를 체크한다.
+
+@Override
+doFilter값을 토대로 체크한다.    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {}
+
+```
+String path = req.getRequestURI(); // 요청 URI를 가져옵니다.
+해당 경로에서 패스가 /swagger-ui 또는 /v3/api-docs인 경우, JWT 검증을 건너뜁니다.
+uri가 해당 규칙을 반영하는지? -> 체크하는 메소드를 만들었고, boolean
+
+
+```
+``` filter를 통해서 이걸 들어올 수 있는데, filter에서 체크가 안되기 때문에 필터에서 작업을 해야한다.
+
+        registry
+                .addMapping("/**") // 모든 경로에 대해 CORS 설정을 적용합니다.
+                .allowedOrigins("http://localhost:3000") // 허용할 출처를 지정합니다. (예: React 앱의 주소)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 허용할 HTTP 메소드를 지정합니다.
+                .allowedHeaders("*") // 모든 헤더를 허용합니다.
+                .allowCredentials(true) // 자격 증명(쿠키 등)을 허용합니다.
+                .exposedHeaders("Authorization", "Refresh-Token"); // 클라이언트가 접근할 수 있는 헤더를 지정합니다.
+```
+
+
+
+근데, filter에서 프로그램과 상관없는 부분까지도 막아버렸다.
+swagger랑 app부분
+---------------
+
+
+
+
+---------------
+
+ddl = none으로 체크
+
+------------------
+문제해결: axios에서 무조건 @requestBody라던지 등등을 이용한다면, 
+값을 무조건 넣어줘야한다.
+
+
+
+
+
+
+
+
+
 ```
