@@ -290,6 +290,172 @@ swagger랑 app부분
 ---------------
 
 
+### 4.30
+
+```
+<현재 문제>
+
+최초로그인시 생성되는 것.
+-> 토근 만료시에만 토큰을 만들기!
+
+데이터는 없다. -> in-memory db이기 때문이다.
+// 실제로 만들땐, ddl = none이 필요하다.
+
+// 실제로 header에 token을 넘겨줘야한다. 
+
+---------------------------------------------------------
+원래대로라면, 로그인 시점에 토큰 생성하거나 갱신을 해야한다.
+지금 우리는 회원가입이 없으므로, 로그인 시점에서 한번만 토큰 생성해야한다.
+
+
+---------------------------------------------------------
+
+
+
+
+
+
+---------------------------------------------------------
+JOIN이 필요하거나 다대다 매핑, 일대다 매핑이 필요한 경우는 JPA가 꼬이게 되니,
+설정이 필요하거나 mybatis를 쓴다.
+---------------------------------------------------------
+entity.isPresent() -> optional로 담겨있기때문에, .isPresent()로 null인지 아닌지 체크
+
+
+
+
+accessToken은 request를 통해서 체크하고, 필요하면, refresh token을 통해서 갱신이 필요하다./
+1. 그러면 token은 header에 담겨서 요청될 것이고, 이를체크하는 작업
+1-1. if (op.isPresent()) {} // User가 존재하면 -> refresh token이 있다.
+
+1-2. JwtProvider에서 발급 받을 수 있다.
+-> 지금은 generateReToken, generateAccToken로 받고 있다.
+
+
+
+
+
+```
+public String renewToken(String token) {
+        System.out.println("debug >> JwtProvider renewToken() method called");
+        // JWT Refresh Token 갱신 로직
+        // JWT를 파싱하여 만료 시간을 갱신합니다.
+        return Jwts.parserBuilder()
+                .setSigningKey(getSigningKey()) // JWT 서명에 사용할 키를 가져옵니다.
+                .build()
+
+                .parseClaimsJws(token) // JWT를 파싱합니다.
+                .getBody() // JWT의 본문을 가져옵니다.
+                .getSubject(); // JWT의 subject를 가져옵니다.
+    }
+```
+```
+private Key getSigningKey() {
+        return Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)); // JWT 서명에 사용할 키를 가져옵니다.
+    }
+
+```
+
+
+// 토큰을 파싱한다.
+Jwts.parserBuilder()
+                .setSigningKey(getSigningKey()) // JWT 서명에 사용할 키를 가져옵니다.
+                .build()
+
+// header를 만든다.
+
+.parseClaimsJws(token) // JWT를 파싱합니다.
+                .getBody() // JWT의 본문을 가져옵니다.
+                .getSubject(); // JWT의 subject를 가져옵니다.
+
+------------------------------------------------------------------
+로그아웃: 서버사이드에서 토큰을 날린다. -> 어떻게?
+
+=> 이렇게 관리할 수 없다. 프론트에서 날려버려야한다.
+리액트에서 localstorage에서 체크할 수 있다.
+
+
+여기서 headers에 담아서 보내준다.
+```
+const response = await axios.get('http://localhost:8088/api/v1/hello', {
+            headers:{
+                Authorization: `Bearer ${accessToken}`,
+            }
+        });
+        console.log('response:', response.data);
+```
+------------------------------------------------------------------
+1-2.
+
+# 콘솔로그 찍는 방법
+```jsx
+const response = await axios.post('http://localhost:8088/auth/login', {
+            email: email,
+            pwd: password
+        })
+```
+------------------------------------------------------------------
+renew하는 방법이란?
+
+
+------------------------------------------------------------------
+```
+@PostMapping("/login") // @RequestMapping("/login")과 @PostMapping("/login")은 같은 의미이다.
+    // 현재 endpoint는 /api/v1/auth/login이다.
+    public ResponseEntity<UserResponseDTO> login(@RequestBody UserRequestDTO params) { // @RequestBody 어노테이션을 사용하여 JSON 데이터를 DTO로 변환한다.
+        System.out.println("debug >> Login(ctrl) endpoint hit");
+        System.out.println("debug >> Login(ctrl) params : " + params.toString());
+        UserResponseDTO response = authService.loginService(params); // service를 호출한다.
+        return ResponseEntity.ok()
+                                .header("Authorization", "Bearer "+response.getAccessToken()) // JWT Access Token을 헤더에 추가한다.  
+                                .header("Refresh-token", response.getRefreshToken()) // JWT Refresh Token을 헤더에 추가한다.
+                                .body(response); // ResponseEntity를 반환한다.
+    }
+```
+
+# 해당 try-catch로 체크한다.
+```
+
+try {
+        // JWT Access Token을 검증하고, 유효한 경우 새로운 JWT Access Token을 생성한다.
+        String newToken = authService.renewToken(token); // service를 호출한다.
+        return ResponseEntity.ok()
+                                .header("Authorization", "Bearer "+newToken) // JWT Access Token을 헤더에 추가한다.  
+                                .build(); // ResponseEntity를 반환한다.
+       } catch (Exception e) {
+        // TODO: handle exception
+            return ResponseEntity
+                    .status(HttpStatus.FORBIDDEN)
+                    .body("재발급 실패"); // 401 Unauthorized 응답을 반환한다.
+       }
+
+```
+--------------------------
+*통신이 안되도록 설정해야한다.*
+
+axios의 intercepter가 필요하다.
+react의 intercepter..!
+
+
+
+
+```요청 인터셉터
+
+
+
+```
+
+
+```응답 인터셉터
+```
+--------------------------
+
+
+
+```
+
+
+
 
 
 ---------------
