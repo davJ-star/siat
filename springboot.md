@@ -541,6 +541,104 @@ jpa로 체크해서 사용할 수 있도록 코드를 스스로 작성해보자.
 
 ```
 
+# 5.7
+
+
+intercepter -> request, response에 대해 가로채서 헤더에 넣어줘서 처리가 가능했다.
+
+controller에서 요청 데이터 수신, 유효성 검증(데이터 포함)후, service에게 데이터를 넘겨줘야한다.
+(필요시, DTO → Entity 변환, 비즈니스 규칙에 대한 추가 검증, )
+권한/인증 체크 (Controller 또는 별도 필터/인터셉터에서)
+
++ 로그 기록(중요한 요청이나 에러 로그 남기기)
++ 트랜잭션 처리(Service에서 필요하다면)
++ 입력값 Sanitizing (XSS, SQL Injection 등 방지)
+-----------------------------------------------
+spa로 프론트엔드 개발을 시작하자, 토큰이라는 방식이 생겼다.
+-----------------------------------------------
+<ORM>
+
+- Mybatis로 dao 작성하던지 -> 나머지
+=> 양방향 매핑
+
+- jpa로 dao 작성하던지 할 수 있다. -> hibernate라는 ORM 활용한다.
+=> 단방향 매핑(in-memory: h2database)
+-----------------------------------------------
+jpa: 
+// table name을 자동으로 생성한다. -> @Table(name = "user")로 변경 가능하다.
+// .yaml에서 ddl-auto: update으로 체크해서 진행.
+```
+jpa:
+        
+        hibernate: 
+            ddl-auto: update
+        show-sql: true
+```
+-> 테이블 생성을 jpa에게 전적으로 위임(update)
+-> 테이블 생성을 위임하지 않는다.(none)
+-----------------------------------------------
+*방향성*
+-----------------------------------------------
+- 양방향: 
+- 단방향: 단순 조회면 굳이 양방향을 쓸 필요가 없다. 해당 테이블로 다른 테이블 조회할 수 있다.
+우리는 일단 @OneToMany()이랑 @JoinColumn(name = "member_id")으로 지정해서 post list를 만들었다.
+
+```
+    @OneToMany()
+    @JoinColumn(name = "member_id") // member_id를 외래 키로 사용합니다.
+    // @JoinColumn은 연관관계의 주인 쪽에서 사용합니다.
+    private List<PostEntity> posts = new ArrayList<>(); // member가 쓴 글을 나타냅니다. 
+```
+
+아래와 같이 쓰지 않았다.
+```
+// member가 쓴 글이필요하다. post_id를 추가한다.
+    @OneToMany(mappedBy = "postEntity") // postEntity 기준으로 매핑합니다.
+    // mappedBy는 연관관계의 주인이 아닌 쪽에서 사용합니다.
+    private Long postId; // 글 ID 
+```
+
+---------------------@OneToMany()의 추가 옵션--------------------------
+@OneToMany(mappedBy = "postEntity")
+
+
+
+---------------------User 비지니스 로직(토큰 없이)--------------------------
+doFilter 없이?
+
+로그인하고, 누가 썼는지 알아야한다.
+
+
+
+
+단방향이라서 MemberEntity기준으로  addPost를 추가한다. member를 토대로 글을 다뤄야한다.
+// member에서 posts를 가져온다.
+
+
+
+------------------------------------------------------------------------------
+private List<PostEntity> posts = new ArrayList<>();를 사용하는게 아니라
+        PostResponseDTO를 활용하겠다.
+
+
+
+
+--------------------복습(어노테이션등)---------------
+
+--------------------
+pathvariable -> @PostMapping("/{id}/post")
+requestBody ->    public String createPost(@PathVariable Long userId, @RequestBody PostRequestDTO params) { // 이렇게 쓸때 pathvariable을 사용하는 것이 좋다.
+}
+
+
+--------------------stream의 map
+map: 타입변환시 사용한다.
+
+int sum = widgets.stream()
+                      .filter(w -> w.getColor() == RED)
+                      .mapToInt(w -> w.getWeight())
+                      .sum();
+ 
 
 
 
@@ -664,6 +762,12 @@ react에서 axios 요청시 쿠키 세션 값을 세팅해서 보내야한다.
 
 
 ```
+
+
+
+
+
+
 
 
 #### 요약
