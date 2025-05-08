@@ -641,6 +641,96 @@ int sum = widgets.stream()
  
 
 
+# 5.8
+
+7일자 수업 내용복습
+
+------------------------------------
+단방향 vs 양방향
+단방향 -> 1대m 관계를 가진다. (회원이 가지고 있는 post들)
+
+그래서 핵심 코드
+
+```
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // cascade = CascadeType.ALL // cascade = CascadeType.ALL은 연관된 엔티티를 함께 저장, 삭제하는 옵션입니다.
+    @JoinColumn(name = "member_id") // member_id를 외래 키로 사용합니다.
+    // @JoinColumn은 연관관계의 주인 쪽에서 사용합니다.
+    private List<PostEntity> posts = new ArrayList<>(); // member가 쓴 글을 나타냅니다. 
+    //private List<PostResponseDTO> posts = new ArrayList<>(); // member가 쓴 글을 나타냅니다. 
+
+    // MemberEntity가 주인이므로, PostEntity를 주체로 하는 연관관계입니다.
+    // member가 쓴 글을 나타내는 List<PostEntity> posts를 추가합니다.
+    // member를 토대로 글을
+    public void addPost(PostEntity post) {
+        posts.add(post); // 글을 추가합니다.
+    }
+
+```
+
+@JoinColumn(name = "member_id") /
+적용코드: 레포지토리로 멤버엔티티를 변경한다. 외래키관계에 있는 post엔티티는 @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)를 통해서 수정가능.
+```
+      if (op.isPresent()) { // User가 존재하면 -> refresh token이 있다.
+            // postRepository.save(post);
+            op.get().addPost(post); // User를 가져온다.
+            //postRepository.save(op.get());
+            memberRepository.save(op.get());
+            
+            return PostResponseDTO.builder()
+                        .title(post.getTitle()) // email
+                        .content(post.getContent()) // password
+                        .build(); // UserResponseDTO를 생성한다.
+           
+        } else {
+            // 없으면, 에러처리
+            return null;
+            
+        }
+```
+
+
+------------------------------------
+// op.isPresent()로 처리하지 않고, orElseThrow(()-> ())처리가능
+
+
+/*추가적으로 Optional에서 orElseThrow(()-> ()) 또는 orElse(null) 또는 ...*/
+
+
+
+
+// 멤버로부터 post id를 가져와야한다. (바로 접근할수는 있는데 그러면 뭐하러 관계를 가졌고, 회원에 해당하는 목록을 보기 어렵다.)
+post entity에서 잡을 수 있도록한다.
+
+/* stream()으로 일단 .filter랑 .map 그리고 .sort(?) 그리고 .reduce */
+
+
+
+
+
+
+
+```
+        PostEntity post = member.findPost(params.getId()); // id로 User를 찾는다.
+
+
+        System.out.println("debug >> updateUserPost(service) post : " + post.toString());
+        post.updatePost(params);    // 
+```
+
+
+// .save()는 존재할때 update하고 없으면 create해서 저장한다.
+------------------------------------
+테이블 스키마를 만들면된다.
+양방향이나 단방향을 만들면 된다.
+
+
+------------------------------------
+
+// PostEntity랑 UserService
+------------------------------------
+
+
+
 
 
 -----------------------------참고하도록한다.------------------------------------
