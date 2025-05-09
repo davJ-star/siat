@@ -729,6 +729,106 @@ post entity에서 잡을 수 있도록한다.
 // PostEntity랑 UserService
 ------------------------------------
 
+# 5.9
+8일 수업 복습
+-> 토큰을 활용해서 인증과 인가를 진행할 수 있다. 더 나아가면, roll(admin, user)로 구분되어야한다.
+
+transactional을 했더니 객체 select, update가 이뤄졌다. .save()를 하지 않았어도 됐었다.
+
+=======================================================================
+1. 
+
+
+
+
+=======================================================================
+
+1. dirty checking -> 업데이트부분을 내가 원하는 부분만 고치기.
+PutMapping -> 전체를 고치는게 아니라 해당 부분만 고치는데     @Transactional을 통해 변경감지를 하다보니, 자동으로 수정한다.
+근데 모두 다 바꿔져버린다.
+
+그래서 두가지 방법을 이용해서 해결할 수 있다.
+-> dynamic insert등을 해보기(해당 entity에서 바꾸기)
+-> jpql
+
+
+
+1.1 dynamic insert등을 해보기(해당 entity에서 바꾸기)
+```
+@PutMapping("/update")
+    // Dirty checking(변경 감지)
+    // -> jpql
+    // -> dynamic insert등을 해보기
+    @Transactional
+    public String update(@RequestBody Map<String, String> params) { // 원래는 requestDTO를 걸어주는게 맞긴하다.
+        //TODO: process POST request
+        System.out.println("debug >> update(ctrl) endpoint hit");
+
+        // entity 정보를 가져온다. -> 없는 경우 .orElseThrow(() -> new RuntimeException("not found")); // 근데 해당 코드로 하면ㄷ안됨...
+        // 일단 user_id는 일단 기존에 있는걸로 진행한다.
+        JpaSampleEntity entity = jpaSampleRepository.findById(params.get("user_id"))
+                            .orElseThrow(() -> new RuntimeException("not found"));
+        // 아래는 있는 경우에만 실행된다. ->  
+        entity.setPasswd(params.get("user_passwd"));
+        entity.setName(params.get("user_name"));
+        ////////////// 아래를 진행하지 않았다면, 
+
+        jpaSampleRepository.save(entity);
+
+        // // 모든 컬럼에 대해 컬럼이 변경된다. 
+        // JpaSampleEntity entity1 = JpaSampleEntity.builder()
+        //                             .userId(params.get("user_id"))
+        //                             .passwd(params.get("user_passwd"))
+        //                             .name(params.get("user_name"))
+        //                             .build();
+        
+        // jpaSampleRepository.save(entity1);
+
+
+        
+
+        return null;
+        /*
+         * 
+         * return Map.of(
+                "accessToken", accToken,
+              "refreshToken", reToken
+            );
+         */
+    }
+
+```
+-------------------------------------------------------------------------
+1.2 jpql를 이용했다.
+
+```
+
+
+```
+
+-------------------------------------------------------------------------
+@Query("SELECT new com.example.demo.domain.entity.JpaSampleEntity.SampleResponseDTO(E.userId, E.user, E.userId, E.userId) FROM JpaSampleEntity E")
+    public List<SampleResponseDTO> findByAll();
+
+-------------------------------------------------------------------------
+HttpURLConnection
+
+
+
+
+--------복습 필요한 것들----------
+
+-> annotation: @NotNull, @Data, @Valid, @Value()
+
+@Data를 통해서 
+@Value()를 통해서 일단 .yaml 파일에 있는 값을 가져올 수 있다
+
+
+
+
+
+
+
 
 
 
@@ -853,7 +953,7 @@ react에서 axios 요청시 쿠키 세션 값을 세팅해서 보내야한다.
 
 ```
 
-
+## 
 
 
 
