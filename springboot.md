@@ -953,7 +953,85 @@ react에서 axios 요청시 쿠키 세션 값을 세팅해서 보내야한다.
 
 ```
 
-## 
+# 5.12
+
+
+.yaml 파일에 있는 값을 불러올 때 사용한다.
+```
+    @Value("${openApi.serviceKey}")
+    private String serviceKey;
+
+    @Value("${openApi.callBackUrl}")
+    private String callBackUrl;
+
+    @Value("${openApi.dataType}")
+    private String dataType;
+
+```
+
+브라우저가 아니기 때문에 httpUrlConnection을 통해 백엔드에서 url 통신을 요청할 수 있다.
+
+HttpURLConnection, InputStream, String으로 
+```
+        HttpURLConnection http   = null ; 
+        InputStream       stream = null ; 
+        String            result = null ;
+```
+URL url = new URL(requestURL); -> http = (HttpURLConnection)url.openConnection();
+                   
+
+
+--------------------------------------------------------
+
+// git security 설정해서 통해서 불러올수 있다.
+
+
+--------------------------------------------------------
+자바의 객체를 json로 바꾸는 것: 직렬화
+반대 작업: 역직렬화
+
+body의 <items>라는 노드에 접근해서 <item>를 꺼내고, ForcastResponseDTO에 담아줘야한다.
+List<ForcastResponseDTO>으로 받을 것이다.
+그리고 매핑을 진행해서 서비스로 진행하면 된다.
+
+
+매핑을 annotation방식으로 바인딩시킬 것이다. 
+@JsonIgnoreProperties(ignoreUnknown = true)을 통해서 영어 대소문자나 null일 수도 있고, property가 없을 수 있다. 이때 에러가 나지 않고 가져온다.
+각각 필드에 @JsonProperty("(필드명)") annotation을 작성해준다.
+
+
+[**매핑을 도와주는 객체가 있다. 서비스에서 일어나야한다.**]
+        ObjectMapper mapper = new ObjectMapper();를 이용한다.
+
+
+
+문자열이기 때문에 <response>부터 타고 들어가야한다.
+```
+<response>
+<header>
+<resultCode>00</resultCode>
+<resultMsg>NORMAL_SERVICE</resultMsg>
+</header>
+<body>
+<dataType>XML</dataType>
+<items>
+<item>
+
+```
+
+=> 반환받는것 ForcastResponseDTO 여러개를 받아야되는데, 지금 이렇게 하면 한개만 돌려준다.
+'''mapper.readValue(str, ForcastResponseDTO.class);'''
+
+
+그렇기 때문에 item을 기준으로 문자열을 끊어서 해줄수 있어야한다. (?)
+
+
+--------------------------------------------------------
+
+// 배열 체크 우선 <response>를 타고 node내에서 findValue("item")으로 체크한다. 일단 하나만 가져올 수 있다.
+// .
+
+// .
 
 
 
