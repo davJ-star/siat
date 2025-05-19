@@ -1,13 +1,14 @@
 # docker
 
 ## 명령어
-```
+
+
+
 docker로 시작한다. (client랑 server로 구성되어있다.)
 *container를 만들고 image를 만들어 담는것 기준*
 (옵션중에서 -는 약어 --는 풀네임)
 
-
-
+```
 version
 
 info
