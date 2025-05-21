@@ -307,10 +307,284 @@ devops-app:
 
 
 
+# 5.20
+
+```
+
+-- dokcer 쓰는 이유
+
+서버 관리 비용 및 인프라(cost upup!) --> cloud로 서버 임대
+cloud등장하게되면서, 가상화 등장
+-------------------------------------------------------
+aws
+	 [endpoint제공] - portforwarding(인바운딩, 아웃바운딩)
+	- 프론트: bucket(s3) -> 
+	- 백엔드: ec2 -> 
+	- 데이터베이스: db ->
+
+
+
+-------------------------------------------------------
+hypervisor vs container
+
+container 대표적인 건 docker
+image -> 실행 환경 + 코드
+
+commit
+vs
+"build: dockerfile을 만들고 이미지 생성."
+-------------------------------------------------------
+git flow: ci -> /cd -> 
+
+
+- 컨테이너 실행(이미지를 이용): run (실행옵션) 이미지명
+- 컨테이너 삭제(IMAGE ID, )
+- [pull, push]
+	- tag
+	- 
+
+- ㅇ
+- ㅇ
+
+-------------------------------------------------------
+
+frontend: 이미지 -> dockerfile
+backend: 이미지 -> dockerfile
+	- db: 이미지 같이 만들어야함.
+
+기본은 3개 이미지
+
+1개로 묶어서 쓰는경우 docker-compose(.yaml)을 사용하면 된다. -> 설정을 담아버린다.
+**docker-compose.yaml은 이미지 하나로 합칠때 사용한다**
+
+-------------------------------------------------------
+application.yaml에 대한 설정은 내로컬에 따른 db 설정이므로, cloud 환경에 따른 db 설정이 필요.
+
+
+-------------------------------------------------------
+.env -> github token에 등록하고 가져다가 써야한다.
 
 
 
 
+
+
+
+[배포시 진행]
+docker-compose을 세팅할때 해당 디렉토리를 잡아서 sql 실행될 수 있도록한다.
+원격에 있는 db에 sql파일이 실행되도록 하면된다.
+ 테이블 스키마 만들어주기 / insert로 더미데이터를 넣기
+
+
+
+실행가능한 애플리케이션 메타데이터 만들기.
+frontend 
+backend
+	```
+		명확한 문서를 만들기위해 엔드포인트를 항상 앞에 api/
+	```
+
+
+
+실행가능한 애플리케이션 메타데이터 만들기-> 백엔드 + db 이미지로 만들꺼면 해당 디렉토리내에서 docker-compose.yaml을 만들어서 세팅 구축해야함.
+도커파일은 frontend나 backend를 만들던 루트 아래에 있어야한다.
+
+
+------------------------------------
+토큰이 필요한 것은 filter를 타고 가도록등.. 정책이 필요하다.
+-> 엔드포인트를 만들때도 규칙을 만든다.
+
+
+
+docker-compose는 이미지를 땡긴다는 느낌.
+docker build를 통해 이미지를 변경되고 끄면 db 생성되고 삭제되고를 반복하게 되며 영속성 x
+--> volumes에 저장해야한다.
+
+
+로컬에 db가 만들어지지 않아도 docker hub에 이미지를 pull해서 local에 db를 사용할 수 있다.
+이미지에 layer 담아서 실행.
+
+>> 허브로부터 db 이미지를 가져오고 환경설정
+1. docker pull mariadb
+
+docker image history mariadb
+2. docker image ls
+
+docker run -p 3306:3306 --name mariaContainer mariadb -d -e MARIADB_ROOT_PASSWORD=123456789 mariadb
+
+
+원격 디비 접속
+3. docker exec -it mariaContainer mariadb -uroot -p
+
+4. database 만들기
+create database devops;
+
+docker을 토대로 자동화
+
+>> 로컬에 이미지 생성.
+5. docker build -t siat-spring-backend .
+------------------------------------
+
+
+
+------------------------------------
+```
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+```
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)로 대처
+
+
+
+
+
+
+
+ jdk17 slim -> 라이센스가 없으니 openjdk17를 더해준다.
+초경량: alpine -> 
+
+
+
+------------최종적으로 만든 JAVA 파일을 패킹하는 작업 명령어--------------
+./gradlew bootJAR
+
+snapshot -> 공유할 수 있는 파일에 해당 이름을 붙인다.
+(docker )
+```
+
+# 5.21
+```
+복습
+
+(**나중에는 git action workflow에 들어간다.**)
+.war vs .jar
+jar 파일로 패킹
+
+from
+copy
+arg
+
+entrypoint
+
+------------------------------------
+docker-compse.yaml를 만들면 이미지 만들지 않아도 된다.
+mariadb랑 siat-spring-backend
+메타데이터이므로 
+
+
+백엔드는 db 의존성을 가져야한다. 
+```yaml
+  database: 
+    image: mariadb:11.4.5 # 도커허브로 이미지를 내려받는다. 또는 우리가 어제 만든 이미지를 줘도된다.
+
+```
+application.yaml vs docker-compse.yaml은 로컬 vs 원격
+------------------------------------
+
+<db 생성>
+디렉토리가 정해야져야한다. volumes에 의해서 db 생성되고 
+
+SPRING -> application.yaml의 spring 의미.
+```
+spring:
+    # mariadb db
+    datasource:
+```
+
+그렇기 때문에 만약에 JPA 사용한다면 SPRING_JPA~
+
+
+.env 만들면, 실행될때 자동으로 실행되므로, 세팅하면된다.
+
+
+<만들어진 db를 실행하고 서버구동>
+병렬처리시 시차가 생길수있어서 restart 옵션 제공
+
+docker-compose에서도 이미지가 실행되어야한다.
+-----> **container 안에서 실행되는건 기존 ports랑 동일해야한다.**
+
+
+docker file로 만들어진 java파일을 써야한다.
+(mariadb도 내려받은게있다.이를 이용)
+
+-------------------------------------------------------------------------
+docker-compose: muti stage로 관리하는 도구
+
+docker compose up을 해서 한번에 이미지를 컨테이너에 올림(docker-compose.yaml이 있어야함)
+docker compose up -d
+docker compose down
+
+
+
+
+도커허브로 이미지를 내려받기 때문에 이미지가 필요함. -> backend 이미지 필요.
+
+
+docker tag siat-spring-backend seongwookjeong/siat-spring-backend
+
+docker tag mariadb seongwookjeong/mariadb
+
+
+docker push seongwookjeong/siat-spring-backend
+(docker push seongwookjeong/mariadb)
+docker push seongwookjeong/siat-mariadb
+
+
+---------실행되고 있는 컨테이너를 올려야한다-----
+
+
+-----------------------------------------------------
+
+(**나중에는 git action workflow에 들어간다.**)
+
+
+build전에 jar 패킹하는 작업이 필요하다.
+
+
+```
+backend-spring-container  | 
+backend-spring-container  |   .   ____          _            __ _ _
+backend-spring-container  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+backend-spring-container  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+backend-spring-container  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+backend-spring-container  |   '  |____| .__|_| |_|_| |_\__, | / / / /
+backend-spring-container  |  =========|_|==============|___/=/_/_/_/
+backend-spring-container  | 
+backend-spring-container  |  :: Spring Boot ::               (v3.3.11)
+backend-spring-container  | 
+backend-maria-container   | 2025-05-21 05:30:51+00:00 [Note] [Entrypoint]: MariaDB upgrade not required
+backend-spring-container  | 2025-05-21T05:30:51.013Z  INFO 1 --- [           main] com.example.backend.BackendApplication   : Starting BackendApplication v0.0.1-SNAPSHOT using Java 17.0.15 with PID 1 (/backend.jar started by root in /)
+backend-spring-container  | 2025-05-21T05:30:51.020Z  INFO 1 --- [           main] com.example.backend.BackendApplication   : No active profile set, falling back to 
+1 default profile: "default"
+backend-maria-container   | 2025-05-21  5:30:51 0 [Note] Starting MariaDB 11.7.2-MariaDB-ubu2404 source revision 80067a69feaeb5df30abb1bfaf7d4e713ccbf027 server_uid 
+hMMzmhT1BYIa3O8hmMYSxMLOW9M= as process 1
+```
+
+```
+backend-spring-container  | 
+backend-spring-container  |   .   ____          _            __ _ _
+backend-spring-container  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+backend-spring-container  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+backend-spring-container  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+backend-spring-container  |   '  |____| .__|_| |_|_| |_\__, | / / / /
+backend-spring-container  |  =========|_|==============|___/=/_/_/_/
+backend-spring-container  | 
+backend-spring-container  |  :: Spring Boot ::               (v3.3.11)
+backend-spring-container  | 
+backend-maria-container   | 2025-05-21 05:30:51+00:00 [Note] [Entrypoint]: MariaDB upgrade not required
+backend-spring-container  | 2025-05-21T05:30:51.013Z  INFO 1 --- [           main] com.example.backend.BackendApplication   : Starting BackendApplication v0.0.1-SNAPSHOT using Java 17.0.15 with PID 1 (/backend.jar started by root in /)
+backend-spring-container  | 2025-05-21T05:30:51.020Z  INFO 1 --- [           main] com.example.backend.BackendApplication   : No active profile set, falling back to 
+1 default profile: "default"
+backend-maria-container   | 2025-05-21  5:30:51 0 [Note] Starting MariaDB 11.7.2-MariaDB-ubu2404 source revision 80067a69feaeb5df30abb1bfaf7d4e713ccbf027 server_uid 
+hMMzmhT1BYIa3O8hmMYSxMLOW9M= as process 1
+```
+
+
+```
 
 
 
