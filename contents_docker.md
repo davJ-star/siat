@@ -9,6 +9,9 @@ docker로 시작한다. (client랑 server로 구성되어있다.)
 (옵션중에서 -는 약어 --는 풀네임)
 
 ```
+[명령어]
+docker로 시작한다. (client랑 server로 구성되어있다.) container를 만들고 image를 만들어 담는것 기준 (옵션중에서 -는 약어 --는 풀네임)
+
 version
 
 info
@@ -21,25 +24,20 @@ info
 컨테이너 실행(이미지를 이용)
 run (실행옵션) 이미지명
 	실행옵션: portfowarding등...
-		-> 사용자가 실행할때 port를 8080으로 하고, image 실행할때 8088 port로 실행하고자 할때.	
+		-> 사용자가 실행할때 port를 80 80으로 하고, image 실행할때 8088 port로 실행하고자 할때.	
 	docker run -p 80:80 --name siatngnix nginx
 			마지막에 ngnix를 하면 자동으로 처리해준다.
 	docker run -d -p 80:80 --name siatngnix nginx
 			-d는 백그라운딩 옵션(background demon)
 
 
-```
-	docker run -d --name siat01 nginx
-			-d는 백그라운딩 옵션(background demon)
-	docker run -d --name siat02 nginx
-			-d는 백그라운딩 옵션(background demon)
+docker run -d --name siat01 nginx
+		-d는 백그라운딩 옵션(background demon)
+docker run -d --name siat02 nginx
+		-d는 백그라운딩 옵션(background demon)
 
-	docker run -d --name siat03 nginx
-			-d는 백그라운딩 옵션(background demon)
-
-		
-	
-```
+docker run -d --name siat03 nginx
+		-d는 백그라운딩 옵션(background demon)
 
 
 
@@ -51,28 +49,85 @@ rm
 rm siatngnix -> 이미지를 삭제하는게아니라 컨테이너 삭제.
 rm siatngnix -f -> 실행중인 컨테이너 삭제
 
-```
-	rm siatngnix -f siat01 siat02 siat03
-```
+rm siatngnix -f siat01 siat02 siat03
 
 
 
 docker image inspect nginx
-```
- "Env": [
-                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b
-in",
-                "NGINX_VERSION=1.27.5",
-                "NJS_VERSION=0.8.10",
-                "NJS_RELEASE=1~bookworm",
-                "PKG_RELEASE=1~bookworm",
-                "DYNPKG_RELEASE=1~bookworm"
-            ],
-            "Cmd": [
-                "nginx",
-                "-g",
-                "daemon off;"
-            ],
+"Env": [ "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b in", "NGINX_VERSION=1.27.5", "NJS_VERSION=0.8.10", "NJS_RELEASE=1bookworm", "PKG_RELEASE=1bookworm", "DYNPKG_RELEASE=1~bookworm" ], "Cmd": [ "nginx", "-g", "daemon off;" ],
+
+컨테이너의 메타데이터 복사(컨테이너 생성시)
+docker run -d --name defaultNginx nginx
+docker container inspect defaultNginx
+
+<메타데이터로 수정하는 방법> docker run --name customNginx nginx cat usr/share/nginx/html/index.html
+
+(참고: usr/share/nginx/html/index.html는 welcom page임.)
+[실행 시점에 컨테이너의 메타데이터는 수정할 수 있다.]
+(사용자가 치는 포트는 이거지만 외부 사용하는 건 내부적으로 해당 포트로 실행시키겠다. port fowarding)
+docker run -d -p 8081:3000 --name redContainer devwikirepo/envnodecolorapp
+docker run -d -p 8082:3000 --name blueContainer --env COLOR=blue devwikirepo/envnodecolorapp
+inspect를 해본다.
+- docker container inspect redContainer 
+- docker container inspect blueContainer 
+
+[pull, push]
+- docker pull devwikirepo/simple-web:lastest(또는 구체적 버전)
+	이미지 태그 변경: tag -> docker tag devwikirepo/simple-web:1.0 seongwookjeong/myapp:0.1
+	이미지를 내려받으면서 
+			- 이미지 명 변경 가능
+			- 바로 실행
+
+docker run -d -p 80:80 --name local-simple-app seongwookjeong/myapp:0.1
+
+
+
+
+
+- docker push seongwookjeong/myapp:0.1
+
+
+
+docker ps
+	-a
+
+
+
+>> 허브로부터 db 이미지를 가져오고 환경설정
+1. docker pull mariadb
+
+
+docker image history mariadb
+2. docker image ls
+(docker run -p 3306:3306 --name mariaContainer mariadb -d -e MARIADB_ROOT_PASSWORD=123456789 mariadb)
+docker run -d --name mariaContainer -e MARIADB_ROOT_PASSWORD=123456789 -p 3306:3306 mariadb
+원격 디비 접속
+3. docker exec -it mariaContainer mariadb -uroot -p
+
+4. database 만들기
+create database devops;
+
+docker을 토대로 자동화
+
+-------------------------------------
+(4.5 jar 패킹)
+./gradlew bootJar
+(나중에는 git action workflow에 들어간다.)
+
+
+>> 로컬에 이미지 생성.
+5. docker build -t siat-spring-backend .
+
+5. docker build -t seongwookjeong/siat-spring-backend .
+
+
+>> 실행중인 컨테이너를 이미지로 생성하는 방법
+docker commit -m dbcommit mariaContainer seongwookjeong/siat-mariadb
+
+-- 컨테이너 실행
+docker run -d -p 8087:8088 --name beContainer siat-spring-backend
+
+
 
 
 ```
